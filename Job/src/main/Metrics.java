@@ -1,3 +1,4 @@
+package main;
 
 public class Metrics {
 	
@@ -6,10 +7,10 @@ public class Metrics {
 	private int currentNumberOfPickers;
 	
 	//constructor
-	public Metrics(int itemsRemaining, int averagePickrate, int currentNumberOfPickers) {
+	public Metrics(int itemsRemaining, int currentNumberOfPickers,  int averagePickrate) {
 		this.itemsRemaining = itemsRemaining;
-		this.averagePickrate = averagePickrate;
 		this.currentNumberOfPickers = currentNumberOfPickers;
+		this.averagePickrate = averagePickrate;
 	}
 	
 	//getters
