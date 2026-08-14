@@ -17,12 +17,11 @@ public class TimeParser {
 			createFormatter("H m"),
 			
 			createFormatter("h a"),
-			createFormatter("Ha"),
 			
 			createFormatter("hhmm a"),
 			createFormatter("hmm a"),
 			createFormatter("HHmm"),
-			createFormatter("Hmm")
+			createFormatter("Hmm"),
 			
 	};
 	
@@ -32,8 +31,12 @@ public class TimeParser {
 		}
 		
 		String cleanInput = rawInput.trim()
-				.replaceAll("\\s+", " ")
-				.replaceAll("(?i)(?<=\\d)[.\\s]*(?=[ap]m)", " ");
+				.replaceAll("(?i)(?<=[ap])\\.(?=m)", "")
+                .replaceAll("(?i)(?<=[ap]m)\\.", "");
+		
+		cleanInput = cleanInput.replaceAll("(?i)(?<=\\d)\\s*(?=[ap]m\\b)", " ");
+		
+		cleanInput = cleanInput.replaceAll("\\s+", " ");
 		
 		for(DateTimeFormatter formatter : FORMATTERS) {
 			try {
