@@ -8,48 +8,47 @@ public class UserInterface {
 	
 	private final Scanner scanner;
 	private final Calculator calculator;
+	private final LanguageService i18n;
 	
-	public UserInterface() {
+	public UserInterface(LanguageService i18n) {
 		this.scanner = new Scanner(System.in);
 		this.calculator = new Calculator();
+		this.i18n = i18n;
 	}
 	
 	public void start() {
-		System.out.println("--- Welcome to the Picking Time Estimator! ---");
+		System.out.println(i18n.getString("welcome"));
 		
 		LocalTime currentTime = getValidTimeInput();
 		
-		int itemsRemaining = getPositiveIntegerInput("Please enter the number of items remaining: ");
+		int itemsRemaining = getPositiveIntegerInput(i18n.getString("prompt.items"));
 		
-		int numberOfPickers = getPositiveIntegerInput("Please enter the number of pickers in your team: ");
+		int numberOfPickers = getPositiveIntegerInput(i18n.getString("prompt.pickers"));
 		
-		int averagePickrate = getPositiveIntegerInput("Please enter the average pickrate for your team: ");
+		int averagePickrate = getPositiveIntegerInput(i18n.getString("prompt.pickrate"));
 		
 		Metrics metrics = new Metrics(itemsRemaining, numberOfPickers, averagePickrate);
 		
 		if(metrics.calculateTotalCapacity() == 0) {
-			System.out.println("Calculation error: Total picking capacity is zero");
-			System.out.println("This happens if the pickrate, or number of pickers is zero. Please ensure both are positive values");
+			System.out.println(i18n.getString("error.capacity_zero"));
 		} else {
 			LocalTime finishTime = calculator.calculateCompletionTime(currentTime, metrics);
 			displayResults(currentTime, metrics, finishTime);
 		}
 		
 		scanner.close();
-		System.out.println("--- TERMINATED ---");
+		System.out.println(i18n.getString("terminated"));
 	}
 	
 	private LocalTime getValidTimeInput() {
 		LocalTime time = null;
 		while (time == null) {
-			System.out.print("Please enter the current time: ");
+			System.out.print(i18n.getString("prompt.time"));
 			String timeInput = scanner.nextLine();
 			try {
 				time = TimeParser.parseTime(timeInput);
 			} catch(DateTimeParseException e) {
-				System.out.println("Could not recognise time format. Examples of valid entries:");
-				System.out.println("   24-hr: 13:15, 13.15, 13 15, 1315, etc");
-				System.out.println("   12-hr: 1:15 pm, 1.15pm, 115pm, 1pm, etc");
+				System.out.println(i18n.getString("error.invalid_time"));
 			}
 		}
 		return time;
@@ -64,13 +63,13 @@ public class UserInterface {
 			try {
 				value = scanner.nextInt();
 				if(value <= 0) {
-					System.out.println("Input must be a positive whole number. Please try again");
+					System.out.println(i18n.getString("error.positive_number"));
 				}
 				else {
 					isValid = true;
 				}
 			} catch(InputMismatchException e) {
-				System.out.println("Invalid input. Please enter a whole number.");
+				System.out.println(i18n.getString("error.integer_required"));
 				scanner.next();
 			}
 		}
@@ -81,11 +80,11 @@ public class UserInterface {
 	}
 	
 	private void displayResults(LocalTime startTime, Metrics metrics, LocalTime finishTime) {
-		System.out.println("\n--- Your Picking Estimate ---");
-		System.out.println("Current Time: " + startTime);
-		System.out.println("Items remaining: " + metrics.getItemsRemaining());
-		System.out.println("Number of Pickers: " + metrics.getCurrentNumberOfPickers());
-		System.out.println("Average Pickrate: " + metrics.getAveragePickrate());
-		System.out.println("Estimated Completion Time: " + finishTime);
+		System.out.println(i18n.getString("results.header"));
+		System.out.println(i18n.getString("results.current_time", startTime));
+		System.out.println(i18n.getString("results.items", metrics.getItemsRemaining()));
+		System.out.println(i18n.getString("results.pickers", metrics.getCurrentNumberOfPickers()));
+		System.out.println(i18n.getString("results.pickrate", metrics.getAveragePickrate()));
+		System.out.println(i18n.getString("results.finish_time", finishTime));
 	}
 }
