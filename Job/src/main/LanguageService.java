@@ -12,6 +12,10 @@ public class LanguageService {
 		setLocale(locale);
 	}
 	
+	public Locale getLocale() {
+		return this.bundle.getLocale();
+	}
+	
 	public void setLocale(Locale locale) {
 		this.bundle = ResourceBundle.getBundle("messages", locale);
 	}

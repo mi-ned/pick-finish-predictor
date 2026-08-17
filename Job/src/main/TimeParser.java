@@ -3,6 +3,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Locale;
 
 public class TimeParser {
@@ -54,6 +55,7 @@ public class TimeParser {
 		return new DateTimeFormatterBuilder()
 				.parseCaseInsensitive()
 				.appendPattern(pattern)
-				.toFormatter(Locale.ENGLISH);
+				.toFormatter(Locale.ENGLISH)
+				.withResolverStyle(ResolverStyle.STRICT);
 	}
 }

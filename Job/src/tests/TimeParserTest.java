@@ -366,7 +366,7 @@ class TimeParserTest {
 	        "24:00", "24 00", "2400", "24.00",
 	})
 	void test24(String input) {
-	    assertEquals(LocalTime.of(0, 0), TimeParser.parseTime(input));
+		assertThrows(DateTimeParseException.class, () -> TimeParser.parseTime(input));
 	}
 	
 

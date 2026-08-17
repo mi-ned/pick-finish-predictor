@@ -3,12 +3,18 @@ import java.time.LocalTime;
 
 public class Calculator {
 	
-	public LocalTime calculateCompletionTime(LocalTime startTime, Metrics metrics) {
+	public CompletionResult calculateCompletionTime(LocalTime startTime, Metrics metrics) {
 		double hoursRequired = metrics.estimatedTimeRequired();
-		
 		long totalMinutes = Math.round(hoursRequired * 60);
 		
-		return startTime.plusMinutes(totalMinutes);
+		long daysAdded = 0;
+		if(hoursRequired >= 24.0) {
+			daysAdded = totalMinutes / (24 * 60);
+		}
+		
+		
+		LocalTime finishTime = startTime.plusMinutes(totalMinutes);
+		return new CompletionResult(finishTime, daysAdded, hoursRequired);
 	}
 
 }

@@ -48,7 +48,7 @@ public class Metrics {
 		
 		int totalCapacity = calculateTotalCapacity();
 		if(totalCapacity == 0) {
-			return 0.0;
+			return 0;
 		}
 		
 		return (double) itemsRemaining / (double) totalCapacity;

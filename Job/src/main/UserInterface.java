@@ -1,7 +1,6 @@
 package main;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -32,8 +31,8 @@ public class UserInterface {
 		if(metrics.calculateTotalCapacity() == 0) {
 			System.out.println(i18n.getString("error.capacity_zero"));
 		} else {
-			LocalTime finishTime = calculator.calculateCompletionTime(currentTime, metrics);
-			displayResults(currentTime, metrics, finishTime);
+			CompletionResult result = calculator.calculateCompletionTime(currentTime, metrics);
+			displayResults(currentTime, metrics, result);
 		}
 		
 		scanner.close();
@@ -60,31 +59,38 @@ public class UserInterface {
 		
 		while(!isValid) {
 			System.out.print(prompt);
+			String input = scanner.nextLine().trim().replaceAll("[,\\s_]", "");
+			
 			try {
-				value = scanner.nextInt();
+				value = Integer.parseInt(input);
 				if(value <= 0) {
 					System.out.println(i18n.getString("error.positive_number"));
-				}
-				else {
+				} else {
 					isValid = true;
 				}
-			} catch(InputMismatchException e) {
+			} catch(NumberFormatException e) {
 				System.out.println(i18n.getString("error.integer_required"));
-				scanner.next();
 			}
 		}
 		
-		scanner.nextLine();
 		return value;
 		
 	}
 	
-	private void displayResults(LocalTime startTime, Metrics metrics, LocalTime finishTime) {
+	private void displayResults(LocalTime startTime, Metrics metrics, CompletionResult result) {
 		System.out.println(i18n.getString("results.header"));
 		System.out.println(i18n.getString("results.current_time", startTime));
+		
 		System.out.println(i18n.getString("results.items", metrics.getItemsRemaining()));
 		System.out.println(i18n.getString("results.pickers", metrics.getCurrentNumberOfPickers()));
 		System.out.println(i18n.getString("results.pickrate", metrics.getAveragePickrate()));
-		System.out.println(i18n.getString("results.finish_time", finishTime));
+		
+		
+		if(result.isMultiDay()) {
+			System.out.println(i18n.getString("results.finish_time_multiday", result.getFinishTime(), result.getDaysAdded()));
+			System.out.println(i18n.getString("warning.exploitative_workload"));
+		} else {
+			System.out.println(i18n.getString("results.finish_time", result.getFinishTime()));
+		}
 	}
 }
