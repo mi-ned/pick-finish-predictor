@@ -6,12 +6,12 @@ import java.util.Scanner;
 public class UserInterface {
 	
 	private final Scanner scanner;
-	private final Calculator calculator;
+	private final SimpleCalculator calculator;
 	private final LanguageService i18n;
 	
 	public UserInterface(LanguageService i18n) {
 		this.scanner = new Scanner(System.in);
-		this.calculator = new Calculator();
+		this.calculator = new SimpleCalculator();
 		this.i18n = i18n;
 	}
 	

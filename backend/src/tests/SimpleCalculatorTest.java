@@ -6,15 +6,15 @@ import java.time.LocalTime;
 
 import org.junit.jupiter.api.Test;
 
-import main.Calculator;
+import main.SimpleCalculator;
 import main.CompletionResult;
 import main.Metrics;
 
-class CalculatorTest {
+class SimpleCalculatorTest {
 
 	@Test
 	void testExactOneHourCompletion() {
-	    Calculator calculator = new Calculator();
+	    SimpleCalculator calculator = new SimpleCalculator();
 	    Metrics metrics = new Metrics(1000, 10, 100);
 	    LocalTime startTime = LocalTime.of(8, 0);
 	    
@@ -25,7 +25,7 @@ class CalculatorTest {
 
 	@Test
 	void testRoundingUpFromThirtyMinutes() {
-	    Calculator calculator = new Calculator();
+	    SimpleCalculator calculator = new SimpleCalculator();
 	    Metrics metrics = new Metrics(500, 10, 100);
 	    LocalTime startTime = LocalTime.of(8, 0);
 	    
@@ -36,7 +36,7 @@ class CalculatorTest {
 
 	@Test
 	void testRoundingUpFromThirtySeconds() {
-	    Calculator calculator = new Calculator();
+	    SimpleCalculator calculator = new SimpleCalculator();
 	    Metrics metrics = new Metrics(10, 10, 100);
 	    LocalTime startTime = LocalTime.of(8, 0);
 	    
@@ -47,7 +47,7 @@ class CalculatorTest {
 	
 	@Test
 	void testMultiDayCompletion() {
-		Calculator calculator = new Calculator();
+		SimpleCalculator calculator = new SimpleCalculator();
 		Metrics metrics = new Metrics(5000, 1, 100);
 		LocalTime startTime = LocalTime.of(10, 0);
 		CompletionResult result = calculator.calculateCompletionTime(startTime, metrics);

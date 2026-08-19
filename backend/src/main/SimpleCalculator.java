@@ -1,7 +1,7 @@
 package main;
 import java.time.LocalTime;
 
-public class Calculator {
+public class SimpleCalculator {
 	
 	public CompletionResult calculateCompletionTime(LocalTime startTime, Metrics metrics) {
 		double hoursRequired = metrics.estimatedTimeRequired();
