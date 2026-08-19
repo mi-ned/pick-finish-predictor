@@ -1,10 +1,12 @@
-package main;
+package com.mironedel.picker.model;
 
 public class Metrics {
 	
 	private int itemsRemaining;
 	private int averagePickrate;
 	private int currentNumberOfPickers;
+	
+	public Metrics() {}
 	
 	//constructor
 	public Metrics(int itemsRemaining, int currentNumberOfPickers,  int averagePickrate) {
@@ -30,15 +32,15 @@ public class Metrics {
 	public void setItemsRemaining(int itemsRemaining) {
 		this.itemsRemaining = itemsRemaining;
 	}
-	
+
 	public void setAveragePickrate(int averagePickrate) {
 		this.averagePickrate = averagePickrate;
 	}
-	
+
 	public void setCurrentNumberOfPickers(int currentNumberOfPickers) {
 		this.currentNumberOfPickers = currentNumberOfPickers;
 	}
-	
+
 	//calculations
 	public int calculateTotalCapacity() {
 		return this.averagePickrate * this.currentNumberOfPickers;

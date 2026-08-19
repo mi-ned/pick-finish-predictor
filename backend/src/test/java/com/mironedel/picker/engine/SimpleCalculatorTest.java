@@ -1,4 +1,4 @@
-package tests;
+package com.mironedel.picker.engine;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,9 +6,8 @@ import java.time.LocalTime;
 
 import org.junit.jupiter.api.Test;
 
-import main.SimpleCalculator;
-import main.CompletionResult;
-import main.Metrics;
+import com.mironedel.picker.model.CompletionResult;
+import com.mironedel.picker.model.Metrics;
 
 class SimpleCalculatorTest {
 

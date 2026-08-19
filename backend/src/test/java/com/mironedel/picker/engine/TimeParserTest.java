@@ -1,7 +1,7 @@
-package tests;
+package com.mironedel.picker.engine;
 
-import static org.junit.Assert.assertThrows;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
@@ -9,9 +9,6 @@ import java.time.format.DateTimeParseException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import main.TimeParser;
-
 
 class TimeParserTest {
 	

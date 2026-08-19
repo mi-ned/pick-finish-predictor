@@ -1,6 +1,8 @@
-package main;
+package com.mironedel.picker.ui;
 
 import java.util.Locale;
+
+import com.mironedel.picker.service.LanguageService;
 
 public class Main {
 	
@@ -12,4 +14,5 @@ public class Main {
 		ui.start();
 		
 	}
+	
 }

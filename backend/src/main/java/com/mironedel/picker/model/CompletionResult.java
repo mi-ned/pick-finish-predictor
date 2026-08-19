@@ -1,4 +1,4 @@
-package main;
+package com.mironedel.picker.model;
 
 import java.time.LocalTime;
 

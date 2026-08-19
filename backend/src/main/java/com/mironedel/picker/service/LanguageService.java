@@ -1,4 +1,4 @@
-package main;
+package com.mironedel.picker.service;
 
 import java.text.MessageFormat;
 import java.util.Locale;

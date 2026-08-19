@@ -1,4 +1,4 @@
-package tests;
+package com.mironedel.picker.ui;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,8 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import main.LanguageService;
-import main.UserInterface;
+import com.mironedel.picker.service.LanguageService;
 
 class UserInterfaceTest {
 	

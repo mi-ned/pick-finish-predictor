@@ -1,7 +1,13 @@
-package main;
+package com.mironedel.picker.ui;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
+
+import com.mironedel.picker.engine.SimpleCalculator;
+import com.mironedel.picker.engine.TimeParser;
+import com.mironedel.picker.model.CompletionResult;
+import com.mironedel.picker.model.Metrics;
+import com.mironedel.picker.service.LanguageService;
 
 public class UserInterface {
 	

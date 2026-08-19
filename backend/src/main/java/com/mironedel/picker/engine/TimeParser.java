@@ -1,4 +1,4 @@
-package main;
+package com.mironedel.picker.engine;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;

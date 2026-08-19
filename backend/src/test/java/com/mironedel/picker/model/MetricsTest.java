@@ -1,10 +1,8 @@
-package tests;
+package com.mironedel.picker.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
-
-import main.Metrics;
 
 class MetricsTest {
 	
