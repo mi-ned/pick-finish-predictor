@@ -87,9 +87,9 @@ public class UserInterface {
 		System.out.println(i18n.getString("results.header"));
 		System.out.println(i18n.getString("results.current_time", startTime));
 		
-		System.out.println(i18n.getString("results.items", metrics.getItemsRemaining()));
-		System.out.println(i18n.getString("results.pickers", metrics.getCurrentNumberOfPickers()));
-		System.out.println(i18n.getString("results.pickrate", metrics.getAveragePickrate()));
+		System.out.println(i18n.getString("results.items", String.format("%,d", metrics.getItemsRemaining())));
+		System.out.println(i18n.getString("results.pickers", String.format("%,d", metrics.getCurrentNumberOfPickers())));
+		System.out.println(i18n.getString("results.pickrate", String.format("%,d", metrics.getAveragePickrate())));
 		
 		
 		if(result.isMultiDay()) {

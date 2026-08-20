@@ -1,9 +1,12 @@
 package com.mironedel.picker.engine;
 import java.time.LocalTime;
 
+import org.springframework.stereotype.Component;
+
 import com.mironedel.picker.model.CompletionResult;
 import com.mironedel.picker.model.Metrics;
 
+@Component
 public class SimpleCalculator implements PickPredictor {
 	
 	@Override
