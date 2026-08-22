@@ -24,8 +24,4 @@ public class SimpleCalculator implements PickPredictor {
 		return new CompletionResult(finishTime, daysAdded, hoursRequired);
 	}
 	
-	
-	
-	
-	
 }
