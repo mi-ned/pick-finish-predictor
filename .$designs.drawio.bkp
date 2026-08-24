@@ -1,6 +1,6 @@
 <mxfile host="Electron" pages="3">
   <diagram name="iPhone" id="E7V-uAgWqu0LrpNs7V8T">
-    <mxGraphModel dx="559" dy="453" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1258" dy="1019" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1557,9 +1557,6 @@
         </mxCell>
         <mxCell id="kAs-Bv8mhWYuQDXbGDsF-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#252525;" value="" vertex="1">
           <mxGeometry height="650" width="500" x="-120" y="140" as="geometry" />
-        </mxCell>
-        <mxCell id="kAs-Bv8mhWYuQDXbGDsF-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=48;strokeColor=none;fillColor=none;" value="" vertex="1">
-          <mxGeometry height="120" width="260" y="235.00000000000006" as="geometry" />
         </mxCell>
         <mxCell id="kAs-Bv8mhWYuQDXbGDsF-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Verdana;fontSize=20;strokeColor=none;fillColor=#3A2818;fontColor=#8A6038;shadow=0;arcSize=50;" value="CALCULATE" vertex="1">
           <mxGeometry height="50" width="170" x="110" y="680" as="geometry" />
