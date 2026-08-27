@@ -1,6 +1,6 @@
 <mxfile host="Electron" pages="3">
   <diagram name="iPhone" id="E7V-uAgWqu0LrpNs7V8T">
-    <mxGraphModel dx="916" dy="915" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="613" dy="624" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -458,7 +458,7 @@
           <mxGeometry height="15" width="20" x="420" y="1982.5" as="geometry" />
         </mxCell>
         <mxCell id="6FrITq2SE1DkO9G-b_pV-299" connectable="0" parent="1" style="group;strokeWidth=0.25;strokeColor=none;" value="" vertex="1">
-          <mxGeometry height="100" width="160" x="520" y="1980" as="geometry" />
+          <mxGeometry height="100" width="180" x="520" y="1980" as="geometry" />
         </mxCell>
         <mxCell id="6FrITq2SE1DkO9G-b_pV-173" parent="6FrITq2SE1DkO9G-b_pV-299" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=light-dark(#F0F0F0,#F0F0F0);" value="" vertex="1">
           <mxGeometry height="100" width="160" as="geometry" />
