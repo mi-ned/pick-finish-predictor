@@ -1,4 +1,9 @@
 abstract class AppStrings{
+  //Tooltip
+  String get tooltipMenu;
+  String get tooltipHelp;
+  String get tooltipHistory;
+  String get tooltipSelectMode;
   //Main buttons
   String get calculateButton;
   String get clearButton;

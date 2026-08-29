@@ -87,4 +87,20 @@ class StringsEs implements AppStrings {
   String get textfieldSearch => 'Buscar...';
   @override
   String get warningMessageExploitativeWorkload => '⚠️ La carga de trabajo supera la capacidad estándar del turno.';
+
+  @override
+  // TODO: implement tooltipHelp
+  String get tooltipHelp => 'Ayuda';
+
+  @override
+  // TODO: implement tooltipHistory
+  String get tooltipHistory => 'Historial';
+
+  @override
+  // TODO: implement tooltipMenu
+  String get tooltipMenu => 'Menú principal';
+
+  @override
+  // TODO: implement tooltipSelectMode
+  String get tooltipSelectMode => 'Seleccionar modo';
 }

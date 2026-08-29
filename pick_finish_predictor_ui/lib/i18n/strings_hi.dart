@@ -87,4 +87,20 @@ class StringsHi implements AppStrings {
   String get textfieldSearch => 'खोजें...';
   @override
   String get warningMessageExploitativeWorkload => '⚠️ कार्यभार सामान्य शिफ्ट क्षमता से अधिक है।';
+
+  @override
+  // TODO: implement tooltipHelp
+  String get tooltipHelp => 'मदद';
+
+  @override
+  // TODO: implement tooltipHistory
+  String get tooltipHistory => 'हिस्ट्री';
+
+  @override
+  // TODO: implement tooltipMenu
+  String get tooltipMenu => 'मुख्य मेन्यू';
+
+  @override
+  // TODO: implement tooltipSelectMode
+  String get tooltipSelectMode => 'मोड चुनें';
 }

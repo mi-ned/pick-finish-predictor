@@ -87,4 +87,20 @@ class StringsZh implements AppStrings {
   String get textfieldSearch => '搜索...';
   @override
   String get warningMessageExploitativeWorkload => '⚠️ 工作量已超过标准班次的最大负荷。';
+
+  @override
+  // TODO: implement tooltipHelp
+  String get tooltipHelp => '帮助';
+
+  @override
+  // TODO: implement tooltipHistory
+  String get tooltipHistory => '历史记录';
+
+  @override
+  // TODO: implement tooltipMenu
+  String get tooltipMenu => '主菜单';
+
+  @override
+  // TODO: implement tooltipSelectMode
+  String get tooltipSelectMode => '选择模式';
 }

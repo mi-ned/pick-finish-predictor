@@ -14,7 +14,7 @@ class AppIconButton extends StatelessWidget {
     required this.tooltip,
     this.onPressed,
     this.color,
-    this.iconSize = 24,
+    this.iconSize = 32,
     });
 
   @override
@@ -24,7 +24,7 @@ class AppIconButton extends StatelessWidget {
       color: color ?? Colors.white,
       tooltip: tooltip,
       onPressed: onPressed,
-      splashRadius: iconSize + 8,
+      splashRadius: iconSize + 4,
     );
   }
 }
@@ -33,7 +33,7 @@ class MenuIconButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final double iconSize;
 
-  const MenuIconButton({super.key, this.onPressed, this.iconSize = 24.0});
+  const MenuIconButton({super.key, this.onPressed, this.iconSize = 32.0});
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class MenuIconButton extends StatelessWidget {
 class HelpIconButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final double iconSize;
-  const HelpIconButton({super.key, this.onPressed, this.iconSize = 24.0});
+  const HelpIconButton({super.key, this.onPressed, this.iconSize = 32.0});
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +65,7 @@ class HelpIconButton extends StatelessWidget {
 class HistoryIconButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final double iconSize;
-  const HistoryIconButton({super.key, this.onPressed, this.iconSize = 24.0});
+  const HistoryIconButton({super.key, this.onPressed, this.iconSize = 32.0});
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +81,7 @@ class HistoryIconButton extends StatelessWidget {
 class ModeIconButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final double iconSize;
-  const ModeIconButton({super.key, this.onPressed, this.iconSize = 24.0});
+  const ModeIconButton({super.key, this.onPressed, this.iconSize = 32.0});
 
   @override
   Widget build(BuildContext context) {

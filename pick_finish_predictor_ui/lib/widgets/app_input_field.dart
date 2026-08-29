@@ -79,19 +79,19 @@ class _AppInputFieldState extends State<AppInputField> {
         onChanged: widget.onChanged,
         style: const TextStyle(
           color: AppColours.textFieldForegroundNormal,
-          fontSize: 12,
+          fontSize: 13,
           fontFamily: 'Verdana',
         ),
         decoration: InputDecoration(
           labelText: widget.label,
           labelStyle: const TextStyle(
             color: AppColours.textFieldForegroundHint,
-            fontSize: 12,
+            fontSize: 13,
             fontFamily: 'Verdana',
           ),
           floatingLabelStyle: const TextStyle(
             color: AppColours.textFieldForegroundHint,
-            fontSize: 12,
+            fontSize: 13,
             fontFamily: 'Verdana',
           ),
           floatingLabelBehavior: FloatingLabelBehavior.auto,
@@ -103,7 +103,7 @@ class _AppInputFieldState extends State<AppInputField> {
           border: InputBorder.none,
           suffixIcon: _buildSuffixIcon(hasText),
           suffixIconConstraints: const BoxConstraints(
-            minWidth: 30,
+            minWidth: 40,
             minHeight: 30,
           ),
         ),
@@ -119,10 +119,12 @@ class _AppInputFieldState extends State<AppInputField> {
         if (widget.onClear != null) widget.onClear!();
         if(widget.onChanged != null) widget.onChanged!('');
       },
-      child: const Icon(
-        Icons.close,
-        size: 16,
-        color: AppColours.textFieldForegroundNormal,
+      child: const Padding(padding: EdgeInsets.only(right: 12.0),
+        child: Icon(
+          Icons.close,
+          size: 16,
+          color: AppColours.textFieldForegroundNormal,
+        ),
       ),
     );
   }
@@ -138,7 +140,7 @@ class _AppInputFieldState extends State<AppInputField> {
             widget.errorText!,
             style: const TextStyle(
               color: AppColours.textFieldForegroundInvalid,
-              fontSize: 10,
+              fontSize: 11,
               fontFamily: 'Verdana',
             ),
           ),
