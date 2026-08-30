@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pick_finish_predictor_ui/theme/app_colours.dart';
 import 'package:pick_finish_predictor_ui/i18n/app_strings.dart';
 
 class CompletionTimeCard extends StatelessWidget {

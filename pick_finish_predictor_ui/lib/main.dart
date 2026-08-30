@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pick_finish_predictor_ui/i18n/app_strings.dart';
 import 'package:pick_finish_predictor_ui/i18n/strings_en.dart';
 import 'package:pick_finish_predictor_ui/theme/app_colours.dart';
-import 'package:pick_finish_predictor_ui/views/layouts/predictor_mobile_layout.dart';
+//import 'package:pick_finish_predictor_ui/views/layouts/predictor_mobile_layout.dart';
+import 'package:pick_finish_predictor_ui/views/layouts/predictor_tablet_portrait_layout.dart';
 
 void main() {
   runApp(const TempPredictorApp());
@@ -62,7 +63,7 @@ class _TempPredictorScreenState extends State<TempPredictorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return PredictorMobileLayout(
+    return PredictorTabletPortraitLayout(
       appStrings: appStrings,
 
       // Icon Callbacks
