@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pick_finish_predictor_ui/i18n/app_strings.dart';
 import 'package:pick_finish_predictor_ui/theme/app_colours.dart';
+import 'package:pick_finish_predictor_ui/views/layouts/app_style.dart';
 import 'package:pick_finish_predictor_ui/widgets/app_action_buttons.dart';
+import 'package:pick_finish_predictor_ui/widgets/app_icon_buttons.dart';
 import 'package:pick_finish_predictor_ui/widgets/app_input_field.dart';
 import 'package:pick_finish_predictor_ui/widgets/completion_time_card.dart';
 
@@ -50,6 +52,9 @@ class PredictorMobileLayout extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+
+    final style = AppStyle.of(context);
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: AppColours.primaryBackground,
@@ -57,39 +62,37 @@ class PredictorMobileLayout extends StatelessWidget{
         children: [
           Container(
             width: double.infinity,
-            height: MediaQuery.of(context).size.height * 0.33,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
+            height: MediaQuery.of(context).size.height * style.headerHeightMultiplier,
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(
                 colors: [AppColours.secondaryBackgroundLite, AppColours.secondaryBackgroundDark], 
                 begin: Alignment.topCenter, 
                 end: Alignment.bottomCenter,
               ),
               borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(45),
-                bottomRight: Radius.circular(45),
+                bottomLeft: Radius.circular(style.radiusCompletionTimeCard),
+                bottomRight: Radius.circular(style.radiusCompletionTimeCard),
               ),
             ),
             //teal parts (< notch area)
             child: SafeArea(
               bottom: false,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+                padding: EdgeInsets.symmetric(horizontal: style.headerHorizontalPadding, vertical: style.headerVerticalPadding),
                 child: Column(children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
 
                       //main menu
-                      IconButton(
-                        icon: Icon(Icons.menu, color: Colors.white), // Ensures icons pop against dark teal
+                      MenuIconButton(
                         tooltip: appStrings.tooltipMenu,
                         onPressed: onMenu,
                       ),
                       
                       const Spacer(),
 
-                      IconButton(
-                        icon: Icon(Icons.help, color: Colors.white), // Ensures icons pop against dark teal
+                      HelpIconButton(
                         tooltip: appStrings.tooltipHelp,
                         onPressed: onHelp,
                       ),
@@ -101,14 +104,12 @@ class PredictorMobileLayout extends StatelessWidget{
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             
-                            IconButton(
-                              icon: Icon(Icons.history, color: Colors.white), // Ensures icons pop against dark teal
+                            HistoryIconButton(
                               tooltip: appStrings.tooltipHistory,
                               onPressed: onHistory,
                             ),
                             
-                            IconButton(
-                              icon: Icon(Icons.calculate, color: Colors.white), // Ensures icons pop against dark teal
+                            ModeIconButton(
                               tooltip: appStrings.tooltipSelectMode,
                               onPressed: onMode,
                             ),
@@ -142,7 +143,7 @@ class PredictorMobileLayout extends StatelessWidget{
           //Middle part
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              padding: EdgeInsets.symmetric(horizontal: style.bodyHorizontalPadding, vertical: style.bodyVerticalPadding),
               child: Column(
                 children: [
                   AppInputField(
@@ -150,21 +151,21 @@ class PredictorMobileLayout extends StatelessWidget{
                     label: appStrings.promptCurrentTime,
                   ),
 
-                  const SizedBox(height: 24),
+                  SizedBox(height: style.inputFieldSpacing),
 
                   AppInputField(
                     controller: itemsController, 
                     label: appStrings.promptItemsRemaining,
                   ),
 
-                  const SizedBox(height: 24),
+                  SizedBox(height: style.inputFieldSpacing),
 
                   AppInputField(
                     controller: pickersController, 
                     label: appStrings.promptNumberOfPickers,
                   ),
 
-                  const SizedBox(height: 24),
+                  SizedBox(height: style.inputFieldSpacing),
 
                   AppInputField(
                     controller: rateController, 
@@ -182,8 +183,8 @@ class PredictorMobileLayout extends StatelessWidget{
             top: false,
             child: Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: 16, 
-                vertical: 16),
+                horizontal: style.bodyHorizontalPadding, 
+                vertical: style.bodyVerticalPadding),
                 child: Row(
                   children: [
                     Expanded(
@@ -193,7 +194,7 @@ class PredictorMobileLayout extends StatelessWidget{
                         onPressed: onClear,
                         ),
                       ),
-                      const SizedBox(width: 16,),
+                      SizedBox(width: style.actionButtonGap,),
                       Expanded(
                         flex: 2,
                         child: CalculateButton(

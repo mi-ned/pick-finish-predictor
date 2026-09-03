@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:pick_finish_predictor_ui/views/layouts/app_style.dart';
 import 'button_state_resolver.dart';
 
 class BaseAppButton extends StatelessWidget {
@@ -30,15 +31,17 @@ class BaseAppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final style = AppStyle.of(context);
+
     return ElevatedButton(
       onPressed: isEnabled ? onPressed : null,
       style: ButtonStyle(
-        minimumSize: WidgetStateProperty.all(const Size(80,50)),
+        minimumSize: WidgetStateProperty.all(Size(80,style.actionButtonHeight)),
         padding: WidgetStateProperty.all(
-          const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+          EdgeInsets.symmetric(horizontal: style.actionButtonHorizontalPadding, vertical: style.actionButtonVerticalPadding),
         ),
         shape: WidgetStateProperty.all(
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0)),
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(style.actionButtonHeight/2)),
       ),
       elevation: WidgetStateProperty.all(0),
       backgroundColor: ButtonStateResolver.resolveBackground(
@@ -56,9 +59,9 @@ class BaseAppButton extends StatelessWidget {
       text,
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
-      style: const TextStyle(
+      style: TextStyle(
         fontFamily: 'Verdana',
-        fontSize: 20.0,
+        fontSize: style.actionButtonFontSize,
         fontWeight: FontWeight.normal,
       )
     ),

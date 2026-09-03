@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pick_finish_predictor_ui/i18n/app_strings.dart';
+import 'package:pick_finish_predictor_ui/views/layouts/app_style.dart';
 
 class CompletionTimeCard extends StatelessWidget {
   final String estimatedTime;
@@ -17,14 +18,17 @@ class CompletionTimeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final style = AppStyle.of(context);
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
           appStrings.headerEstimatedCompletionTime,
-          style: const TextStyle(
+          style: TextStyle(
             color: Colors.white,
-            fontSize: 14,
+            fontSize: style.messagesCompletionTimeCard,
             fontFamily: 'Verdana',
           ),
         ),
@@ -33,20 +37,23 @@ class CompletionTimeCard extends StatelessWidget {
           estimatedTime,
           style: TextStyle(
             color: Colors.white,
-            fontSize: 64,
+            fontSize: style.timeCompletionTimeCard,
             fontWeight: FontWeight.normal,
             fontFamily: 'Verdana',
           ),
         ),
-        const SizedBox(height: 8),
-        Text(
-          appStrings.warningMessageExploitativeWorkload,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 14,
-            fontFamily: 'Verdana',
+
+        if(isOver24Hrs) ...[
+          const SizedBox(height: 8),
+          Text(
+            appStrings.warningMessageExploitativeWorkload,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: style.messagesCompletionTimeCard,
+              fontFamily: 'Verdana',
+            ),
           ),
-        ),
+        ]
         //const SizedBox(height: 8),
       ],
     );

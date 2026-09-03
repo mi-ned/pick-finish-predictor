@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pick_finish_predictor_ui/views/layouts/app_style.dart';
 
 class AppIconButton extends StatelessWidget {
 
@@ -6,7 +7,7 @@ class AppIconButton extends StatelessWidget {
   final String tooltip;
   final VoidCallback? onPressed;
   final Color? color;
-  final double iconSize;
+  final double? iconSize;
 
   const AppIconButton({
     super.key,
@@ -14,32 +15,47 @@ class AppIconButton extends StatelessWidget {
     required this.tooltip,
     this.onPressed,
     this.color,
-    this.iconSize = 32,
+    this.iconSize,
     });
 
   @override
   Widget build(BuildContext context) {
+
+    final double effectiveIconSize = iconSize ?? AppStyle.of(context).headerIconSize;
+
     return IconButton(
-      icon: Icon(icon),
+      icon: Icon(
+        icon,
+        size: effectiveIconSize,
+        ),
       color: color ?? Colors.white,
       tooltip: tooltip,
       onPressed: onPressed,
-      splashRadius: iconSize + 4,
+      constraints: BoxConstraints(
+        minWidth: effectiveIconSize * 1.125,
+        minHeight: effectiveIconSize * 1.125,
+      )
     );
   }
 }
 
 class MenuIconButton extends StatelessWidget {
+  final String tooltip;
   final VoidCallback? onPressed;
-  final double iconSize;
+  final double? iconSize;
 
-  const MenuIconButton({super.key, this.onPressed, this.iconSize = 32.0});
+  const MenuIconButton({
+    super.key, 
+    required this.tooltip, 
+    this.onPressed, 
+    this.iconSize,
+  });
 
   @override
   Widget build(BuildContext context) {
     return AppIconButton(
       icon: Icons.menu_rounded,
-      tooltip: 'Menu',
+      tooltip: tooltip,
       onPressed: onPressed,
       iconSize: iconSize,
     );
@@ -47,15 +63,22 @@ class MenuIconButton extends StatelessWidget {
 }
 
 class HelpIconButton extends StatelessWidget {
+  final String tooltip;
   final VoidCallback? onPressed;
-  final double iconSize;
-  const HelpIconButton({super.key, this.onPressed, this.iconSize = 32.0});
+  final double? iconSize;
+
+  const HelpIconButton({
+    super.key, 
+    required this.tooltip, 
+    this.onPressed, 
+    this.iconSize,
+  });
 
   @override
   Widget build(BuildContext context) {
     return AppIconButton(
       icon: Icons.help,
-      tooltip: 'Help',
+      tooltip: tooltip,
       onPressed: onPressed,
       iconSize: iconSize,
     );
@@ -63,15 +86,23 @@ class HelpIconButton extends StatelessWidget {
 }
 
 class HistoryIconButton extends StatelessWidget {
+  
+  final String tooltip;
   final VoidCallback? onPressed;
-  final double iconSize;
-  const HistoryIconButton({super.key, this.onPressed, this.iconSize = 32.0});
+  final double? iconSize;
+
+  const HistoryIconButton({
+    super.key, 
+    required this.tooltip, 
+    this.onPressed, 
+    this.iconSize,
+    });
 
   @override
   Widget build(BuildContext context) {
     return AppIconButton(
-      icon: Icons.history,
-      tooltip: 'History',
+      icon: Icons.history_rounded,
+      tooltip: tooltip,
       onPressed: onPressed,
       iconSize: iconSize,
     );
@@ -79,15 +110,23 @@ class HistoryIconButton extends StatelessWidget {
 }
 
 class ModeIconButton extends StatelessWidget {
+  final String tooltip;
   final VoidCallback? onPressed;
-  final double iconSize;
-  const ModeIconButton({super.key, this.onPressed, this.iconSize = 32.0});
+  final double? iconSize;
+
+  const ModeIconButton({
+    super.key, 
+    required this.tooltip,
+    this.onPressed,
+    this.iconSize,
+    
+    });
 
   @override
   Widget build(BuildContext context) {
     return AppIconButton(
       icon: Icons.calculate,
-      tooltip: 'Select Mode',
+      tooltip: tooltip,
       onPressed: onPressed,
       iconSize: iconSize,
     );
