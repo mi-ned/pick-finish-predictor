@@ -83,7 +83,6 @@ class PredictorMobileLayout extends StatelessWidget{
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-
                       //main menu
                       MenuIconButton(
                         tooltip: appStrings.tooltipMenu,

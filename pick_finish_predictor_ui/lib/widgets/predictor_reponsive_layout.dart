@@ -1,6 +1,7 @@
 // lib/widgets/predictor_responsive_layout.dart
 import 'package:flutter/material.dart';
 import 'package:pick_finish_predictor_ui/i18n/app_strings.dart';
+import 'package:pick_finish_predictor_ui/views/layouts/predictor_desktop_layout.dart';
 import 'package:pick_finish_predictor_ui/views/layouts/predictor_mobile_layout.dart';
 import 'package:pick_finish_predictor_ui/views/layouts/predictor_tablet_portrait_layout.dart';
 
@@ -56,7 +57,7 @@ class PredictorResponsiveLayout extends StatelessWidget {
         // 1. Desktop & iPad Landscape Split View (Width >= 900 or Landscape)
         if (constraints.maxWidth >= 900 || isLandscape) {
           // You will swap this with PredictorTwoColumnLayout on Mon/Tue
-          return PredictorTabletPortraitLayout(
+          return PredictorDesktopLayout(
             appStrings: appStrings,
             onMenu: onMenu,
             onHelp: onHelp,
