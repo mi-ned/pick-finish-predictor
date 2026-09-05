@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:pick_finish_predictor_ui/i18n/strings_en.dart';
+import 'package:pick_finish_predictor_ui/theme/app_colours.dart';
 import 'package:pick_finish_predictor_ui/views/layouts/app_style.dart';
 import 'package:pick_finish_predictor_ui/views/layouts/predictor_desktop_layout.dart';
+import 'package:pick_finish_predictor_ui/views/layouts/predictor_tablet_landscape_layout.dart';
 
-void main() {
+void main() async {
 
-  /*
+  
   WidgetsFlutterBinding.ensureInitialized();
-  await windowManager.ensureInitialized();
+
+  await SystemChrome.setEnabledSystemUIMode(
+    SystemUiMode.immersiveSticky,
+    overlays: [],
+    );
+  /*await windowManager.ensureInitialized();
 
   WindowOptions windowOptions = const WindowOptions(
     minimumSize: Size(900, 600), // Prevents layout crushing
@@ -71,9 +79,10 @@ class _PredictorTestPageState extends State<PredictorTestPage> {
   @override
 Widget build(BuildContext context) {
   return Scaffold(
-    body: SafeArea(
+    //body: SafeArea(
       // Ensure 'child:' parameter name is explicitly defined here
-        child: PredictorDesktopLayout(
+      backgroundColor: AppColours.primaryBackground,
+        body: PredictorTabletLandscapeLayout(
           appStrings: StringsEn(),
           onMenu: () {},
           onHelp: () {},
@@ -89,7 +98,6 @@ Widget build(BuildContext context) {
           onClear: () {},
           onCalculate: () {},
         ),
-      ),
-  );
+      );
 }
 }

@@ -86,7 +86,7 @@ class AppStyle {
     DisplayMode.iPadPortrait => 40.0,
     DisplayMode.macOS => 32.0,
     // TODO: Handle this case.
-    DisplayMode.iPadLandscape => 32.0,
+    DisplayMode.iPadLandscape => 40.0,
   };
 
   double get textFieldCloseIcon => switch(mode){
@@ -94,7 +94,7 @@ class AppStyle {
     DisplayMode.iPadPortrait => 24.0,
     DisplayMode.macOS => 16.0,
     // TODO: Handle this case.
-    DisplayMode.iPadLandscape => 16.0,
+    DisplayMode.iPadLandscape => 24.0,
   };
 
   double get textFieldErrorMessage => switch(mode){
@@ -102,7 +102,7 @@ class AppStyle {
     DisplayMode.iPadPortrait => 13.0,
     DisplayMode.macOS => 11.0,
     // TODO: Handle this case.
-    DisplayMode.iPadLandscape => 11.0,
+    DisplayMode.iPadLandscape => 13.0,
   };
 
   double get actionButtonHeight => switch(mode){
@@ -110,7 +110,7 @@ class AppStyle {
     DisplayMode.iPadPortrait => 56.0,
     DisplayMode.macOS => 56.0,
     // TODO: Handle this case.
-    DisplayMode.iPadLandscape => 56.0,
+    DisplayMode.iPadLandscape => 48.0,
   };
 
   double get actionButtonHorizontalPadding => switch(mode){
@@ -118,7 +118,7 @@ class AppStyle {
     DisplayMode.iPadPortrait => 24.0,
     DisplayMode.macOS => 24.0,
     // TODO: Handle this case.
-    DisplayMode.iPadLandscape => 24.0,
+    DisplayMode.iPadLandscape => 16.0,
   };
 
   double get actionButtonVerticalPadding => switch(mode){
@@ -126,7 +126,7 @@ class AppStyle {
     DisplayMode.iPadPortrait => 16.0,
     DisplayMode.macOS => 16.0,
     // TODO: Handle this case.
-    DisplayMode.iPadLandscape => 16.0,
+    DisplayMode.iPadLandscape => 12.0,
   };
 
   double get actionButtonFontSize => switch(mode){
@@ -167,7 +167,7 @@ double get bodyHorizontalPadding => switch (mode) {
   DisplayMode.iPadPortrait => 120.0,
   DisplayMode.macOS => 80.0,
   // TODO: Handle this case.
-  DisplayMode.iPadLandscape => 80.0,
+  DisplayMode.iPadLandscape => 60.0,
 };
 
 double get bodyVerticalPadding => switch (mode) {
@@ -200,7 +200,7 @@ double get actionButtonGap => switch (mode) {
   DisplayMode.iPadPortrait => 60.0,
   DisplayMode.macOS => 60.0,
   // TODO: Handle this case.
-  DisplayMode.iPadLandscape => 0.0,
+  DisplayMode.iPadLandscape => 60.0,
 };
 
 double get radiusCompletionTimeCard => switch(mode) {
@@ -220,10 +220,24 @@ double get radiusCompletionTimeCard => switch(mode) {
 //double get handlePillHeightHistoryCard 5.0
 
 //double get handlePillRadiusHistoryCard 25.0
+double get handlePillRadiusHistoryCard => switch(mode){
+DisplayMode.iPhone => 0.0,
+  DisplayMode.iPadPortrait => 0.0,
+  DisplayMode.macOS => 0.0,
+  DisplayMode.iPadLandscape => 45.0,
+};
 
 //double get handlePillSpacingHistoryCard 8.0
 
 double get timelineFontSizeHistoryCard => switch(mode){
+  DisplayMode.iPhone => 0.0,
+  DisplayMode.iPadPortrait => 0.0,
+  DisplayMode.macOS => 14.0,
+  // TODO: Handle this case.
+  DisplayMode.iPadLandscape => 14.0,
+};
+
+double get timeRecordedFontSizeHistoryCard => switch(mode){
   DisplayMode.iPhone => 0.0,
   DisplayMode.iPadPortrait => 0.0,
   DisplayMode.macOS => 12.0,
@@ -231,20 +245,54 @@ double get timelineFontSizeHistoryCard => switch(mode){
   DisplayMode.iPadLandscape => 12.0,
 };
 
-double get timeRecordedFontSizeHistoryCard => switch(mode){
-  DisplayMode.iPhone => 0.0,
-  DisplayMode.iPadPortrait => 0.0,
-  DisplayMode.macOS => 9.0,
-  // TODO: Handle this case.
-  DisplayMode.iPadLandscape => 9.0,
-};
-
 double get resultTimeFontSizeHistoryCard => switch(mode){
   DisplayMode.iPhone => 0.0,
   DisplayMode.iPadPortrait => 0.0,
-  DisplayMode.macOS => 13.0,
+  DisplayMode.macOS => 15.0,
   // TODO: Handle this case.
-  DisplayMode.iPadLandscape => 13.0,
+  DisplayMode.iPadLandscape => 15.0,
+};
+
+double get horizontalPaddingHistoryCard => switch(mode){
+  DisplayMode.iPhone => 0.0,
+  DisplayMode.iPadPortrait => 0.0,
+  DisplayMode.macOS => 30.0,
+  DisplayMode.iPadLandscape => 30.0,
+};
+
+double get verticalPaddingHistoryCard => switch(mode){
+  DisplayMode.iPhone => 0.0,
+  DisplayMode.iPadPortrait => 0.0,
+  DisplayMode.macOS => 24.0,
+  DisplayMode.iPadLandscape => 24.0,
+};
+
+double get spacingBetweenListViewElementsHistoryCard => switch(mode){
+   DisplayMode.iPhone => 0.0,
+  DisplayMode.iPadPortrait => 0.0,
+  DisplayMode.macOS => 8.0,
+  DisplayMode.iPadLandscape => 8.0,
+};
+
+double get spacingBetweenListViewItemsHistoryCard => switch(mode){
+   DisplayMode.iPhone => 0.0,
+  DisplayMode.iPadPortrait => 0.0,
+  DisplayMode.macOS => 24.0,
+  DisplayMode.iPadLandscape => 30.0,
+};
+
+double get spacingBetweenListViewLastElementDividerHistoryCard => switch(mode){
+  DisplayMode.iPhone => 0.0,
+  DisplayMode.iPadPortrait => 0.0,
+  DisplayMode.macOS => 12.0,
+  DisplayMode.iPadLandscape => 12.0,
+};
+
+double get dividerHeightHistoryCard => switch(mode){
+  DisplayMode.iPhone => 0.0,
+  DisplayMode.iPadPortrait => 0.0,
+  DisplayMode.macOS => 1.0,
+  DisplayMode.iPadLandscape => 1.0,
 };
 
   

@@ -24,7 +24,7 @@ class HistoryCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColours.tileBackground,
         borderRadius: isTablet
-          ? BorderRadius.vertical(top: Radius.circular(style.radiusCompletionTimeCard))
+          ? BorderRadius.vertical(top: Radius.circular(style.handlePillRadiusHistoryCard),)
           : BorderRadius.zero,
       ),
       child: Column(
@@ -33,7 +33,7 @@ class HistoryCard extends StatelessWidget {
             const SizedBox(height: 20), //style.handlePillSpace
             Center(
               child: Container(
-                width: 30, //style.handlePillWidth
+                width: 40, //style.handlePillWidth
                 height: 5, //style.handlePillHeight
                 decoration: BoxDecoration(
                   color: AppColours.sliderBackground,
@@ -45,10 +45,12 @@ class HistoryCard extends StatelessWidget {
           ],
           Expanded(
             child: ListView(
+              
               padding: EdgeInsets.symmetric(
-                horizontal: style.bodyHorizontalPadding,
-                vertical: style.bodyVerticalPadding,
+                horizontal: style.horizontalPaddingHistoryCard,
+                vertical: style.verticalPaddingHistoryCard,
               ),
+              
               children: [
                 //dummy values
                 _buildHistoryListView(
@@ -68,7 +70,6 @@ class HistoryCard extends StatelessWidget {
                   timeRecorded: '11:00am', 
                   resultTime: '22:03 (+1 day)', 
                   style: style,
-                  showDivider: false,
                   ),
               ],
             ),
@@ -95,16 +96,16 @@ class HistoryCard extends StatelessWidget {
             fontFamily: 'Verdana',
           ),
         ),
-        const SizedBox(height: 4), //experiment
+        SizedBox(height: style.spacingBetweenListViewElementsHistoryCard),
         Text(
-          timeRecorded,
+          "Time recorded: $timeRecorded",
           style: TextStyle(
             color: AppColours.tileForegroundSecondary,
             fontSize: style.timeRecordedFontSizeHistoryCard,
             fontFamily: 'Verdana',
           ),
         ),
-        const SizedBox(height: 6), //experiment
+        SizedBox(height: style.spacingBetweenListViewElementsHistoryCard),
         Text(
           resultTime,
           style: TextStyle(
@@ -114,9 +115,9 @@ class HistoryCard extends StatelessWidget {
           ),
         ),
         if(showDivider) ...[
-          const SizedBox(height: 12), //experiment
-          const Divider(color: AppColours.dividerBackground, height: 1),
-          SizedBox(height: style.inputFieldSpacing) //experiment
+          SizedBox(height: style.spacingBetweenListViewLastElementDividerHistoryCard),
+          Divider(color: AppColours.dividerBackground, height: style.dividerHeightHistoryCard),
+          SizedBox(height: style.spacingBetweenListViewItemsHistoryCard)
         ],
       ],
     );
