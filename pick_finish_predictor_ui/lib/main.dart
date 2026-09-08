@@ -2,31 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pick_finish_predictor_ui/i18n/strings_en.dart';
 import 'package:pick_finish_predictor_ui/theme/app_colours.dart';
-import 'package:pick_finish_predictor_ui/views/layouts/app_style.dart';
 import 'package:pick_finish_predictor_ui/views/layouts/predictor_desktop_layout.dart';
+import 'package:pick_finish_predictor_ui/views/layouts/predictor_mobile_layout.dart';
 import 'package:pick_finish_predictor_ui/views/layouts/predictor_tablet_landscape_layout.dart';
+import 'package:pick_finish_predictor_ui/views/layouts/predictor_tablet_portrait_layout.dart';
 
 void main() async {
-
-  
   WidgetsFlutterBinding.ensureInitialized();
 
+  // Hide system overlays for full-screen immersive UI
   await SystemChrome.setEnabledSystemUIMode(
     SystemUiMode.immersiveSticky,
     overlays: [],
-    );
-  /*await windowManager.ensureInitialized();
-
-  WindowOptions windowOptions = const WindowOptions(
-    minimumSize: Size(900, 600), // Prevents layout crushing
-    size: Size(1200, 800),
   );
-  
-  windowManager.waitUntilReadyToShow(windowOptions, () async {
-    await windowManager.show();
-    await windowManager.focus();
-  });
-  */
 
   runApp(const PickFinishPredictorApp());
 }
@@ -36,9 +24,12 @@ class PickFinishPredictorApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: PredictorTestPage(),
+      theme: ThemeData(
+        scaffoldBackgroundColor: AppColours.primaryBackground,
+      ),
+      home: const PredictorTestPage(),
     );
   }
 }
@@ -51,7 +42,6 @@ class PredictorTestPage extends StatefulWidget {
 }
 
 class _PredictorTestPageState extends State<PredictorTestPage> {
-  // Instantiated ONCE in state
   late final TextEditingController _timeController;
   late final TextEditingController _itemsController;
   late final TextEditingController _pickersController;
@@ -68,7 +58,6 @@ class _PredictorTestPageState extends State<PredictorTestPage> {
 
   @override
   void dispose() {
-    // Clean up memory
     _timeController.dispose();
     _itemsController.dispose();
     _pickersController.dispose();
@@ -77,27 +66,43 @@ class _PredictorTestPageState extends State<PredictorTestPage> {
   }
 
   @override
-Widget build(BuildContext context) {
-  return Scaffold(
-    //body: SafeArea(
-      // Ensure 'child:' parameter name is explicitly defined here
+  Widget build(BuildContext context) {
+    return Scaffold(
       backgroundColor: AppColours.primaryBackground,
-        body: PredictorTabletLandscapeLayout(
-          appStrings: StringsEn(),
-          onMenu: () {},
-          onHelp: () {},
-          onHistory: () {},
-          onMode: () {},
-          estimatedTime: '00:00',
-          isCalculated: false,
-          isOver24Hrs: true,
-          timeController: _timeController,
-          itemsController: _itemsController,
-          pickersController: _pickersController,
-          rateController: _rateController,
-          onClear: () {},
-          onCalculate: () {},
-        ),
-      );
-}
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          // If the window gets squeezed below target dimensions, scale everything down uniformly
+          return InteractiveViewer(
+            panEnabled: false,
+            scaleEnabled: false,
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              alignment: Alignment.center,
+              child: SizedBox(
+                // Force a stable target baseline (e.g., 1000x650)
+                width: constraints.maxWidth < 1000 ? 1000 : constraints.maxWidth,
+                height: constraints.maxHeight < 650 ? 650 : constraints.maxHeight,
+                child: PredictorDesktopLayout(
+                  appStrings: StringsEn(),
+                  onMenu: () {},
+                  onHelp: () {},
+                  onHistory: () {},
+                  onMode: () {},
+                  estimatedTime: '00:00',
+                  isCalculated: false,
+                  isOver24Hrs: true,
+                  timeController: _timeController,
+                  itemsController: _itemsController,
+                  pickersController: _pickersController,
+                  rateController: _rateController,
+                  onClear: () {},
+                  onCalculate: () {},
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
 }

@@ -68,9 +68,9 @@ class PredictorDesktopLayout extends StatelessWidget {
 
                   Padding(
                     padding: EdgeInsets.only(
-                      top: style.headerVerticalPadding,
-                      left: style.headerHorizontalPadding,
-                      right: style.headerHorizontalPadding,
+                      top: style.iconButtonsVerticalPadding,
+                      left: style.iconButtonsHorizontalPadding,
+                      right: style.iconButtonsHorizontalPadding,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -91,7 +91,7 @@ class PredictorDesktopLayout extends StatelessWidget {
 
                   Padding(
                     padding: EdgeInsets.symmetric(
-                      horizontal: style.bodyHorizontalPadding,
+                      horizontal: style.inputFieldHorizontalPadding,
                     ),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -114,7 +114,7 @@ class PredictorDesktopLayout extends StatelessWidget {
                         AppInputField(
                           controller: rateController,
                           label: appStrings.promptAveragePickRate,
-                          errorText: appStrings.errorMessageCapacityZero, // test
+                          errorText: appStrings.errorMessageCapacityZero,
                         ),
                       ],
                     ),
@@ -127,7 +127,6 @@ class PredictorDesktopLayout extends StatelessWidget {
                     padding: EdgeInsets.only(
                       left: 150,
                       right: 150,
-                      //bottom: style.bottomBarPadding,
                     ),
                     child: Row(
                     children: [
@@ -138,7 +137,7 @@ class PredictorDesktopLayout extends StatelessWidget {
                           onPressed: onClear,
                         ),
                       ),
-                      SizedBox(width: style.actionButtonGap),
+                      SizedBox(width: style.actionButtonSpacing),
                       Expanded(
                         flex: 2,
                         child: CalculateButton(
@@ -164,7 +163,7 @@ class PredictorDesktopLayout extends StatelessWidget {
                 // Top Container: Teal Completion Time Section
                 Container(
                   width: double.infinity,
-                  height: MediaQuery.of(context).size.height * style.headerHeightMultiplier,
+                  height: MediaQuery.of(context).size.height * style.completionTimeCardHeightMultiplier,
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
@@ -176,8 +175,8 @@ class PredictorDesktopLayout extends StatelessWidget {
                     ),
                   ),
                   padding: EdgeInsets.symmetric(
-                    horizontal: style.headerHorizontalPadding,
-                    vertical: style.headerVerticalPadding,
+                    horizontal: style.iconButtonsHorizontalPadding,
+                    vertical: style.iconButtonsVerticalPadding,
                   ),
                   child: SafeArea(
                     left: false,

@@ -62,7 +62,7 @@ class PredictorMobileLayout extends StatelessWidget{
         children: [
           Container(
             width: double.infinity,
-            height: MediaQuery.of(context).size.height * style.headerHeightMultiplier,
+            height: MediaQuery.of(context).size.height * style.completionTimeCardHeightMultiplier,
             decoration: BoxDecoration(
               gradient: const LinearGradient(
                 colors: [AppColours.secondaryBackgroundLite, AppColours.secondaryBackgroundDark], 
@@ -70,15 +70,15 @@ class PredictorMobileLayout extends StatelessWidget{
                 end: Alignment.bottomCenter,
               ),
               borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(style.radiusCompletionTimeCard),
-                bottomRight: Radius.circular(style.radiusCompletionTimeCard),
+                bottomLeft: Radius.circular(style.completionTimeCardBorderRadius),
+                bottomRight: Radius.circular(style.completionTimeCardBorderRadius),
               ),
             ),
             //teal parts (< notch area)
             child: SafeArea(
               bottom: false,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: style.headerHorizontalPadding, vertical: style.headerVerticalPadding),
+                padding: EdgeInsets.symmetric(horizontal: style.iconButtonsHorizontalPadding, vertical: style.iconButtonsVerticalPadding),
                 child: Column(children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -142,7 +142,7 @@ class PredictorMobileLayout extends StatelessWidget{
           //Middle part
           Expanded(
             child: SingleChildScrollView(
-              padding: EdgeInsets.symmetric(horizontal: style.bodyHorizontalPadding, vertical: style.bodyVerticalPadding),
+              padding: EdgeInsets.symmetric(horizontal: style.inputFieldHorizontalPadding, vertical: style.inputFieldVerticalPadding),
               child: Column(
                 children: [
                   AppInputField(
@@ -182,8 +182,8 @@ class PredictorMobileLayout extends StatelessWidget{
             top: false,
             child: Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: style.bodyHorizontalPadding, 
-                vertical: style.bodyVerticalPadding),
+                horizontal: style.actionButtonsHorizontalPadding, 
+                vertical: style.actionButtonsVerticalPadding),
                 child: Row(
                   children: [
                     Expanded(
@@ -193,7 +193,7 @@ class PredictorMobileLayout extends StatelessWidget{
                         onPressed: onClear,
                         ),
                       ),
-                      SizedBox(width: style.actionButtonGap,),
+                      SizedBox(width: style.actionButtonSpacing,),
                       Expanded(
                         flex: 2,
                         child: CalculateButton(

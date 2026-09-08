@@ -45,7 +45,6 @@ class AppStyle {
     DisplayMode.iPhone => 14.0,
     DisplayMode.iPadPortrait => 16.0,
     DisplayMode.macOS => 16.0,
-    // TODO: Handle this case.
     DisplayMode.iPadLandscape => 16.0,
   };
 
@@ -53,7 +52,6 @@ class AppStyle {
     DisplayMode.iPhone => 64.0,
     DisplayMode.iPadPortrait => 80.0,
     DisplayMode.macOS => 80.0,
-     // TODO: Handle this case.
      DisplayMode.iPadLandscape => 80.0,
   };
 
@@ -61,7 +59,6 @@ class AppStyle {
     DisplayMode.iPhone => 14.0,
     DisplayMode.iPadPortrait => 16.0,
     DisplayMode.macOS => 14.0,
-    // TODO: Handle this case.
     DisplayMode.iPadLandscape => 14.0,
   };
 
@@ -69,7 +66,6 @@ class AppStyle {
     DisplayMode.iPhone => 8.0,
     DisplayMode.iPadPortrait => 12.0,
     DisplayMode.macOS => 8.0,
-    // TODO: Handle this case.
     DisplayMode.iPadLandscape => 8.0,
   };
 
@@ -77,7 +73,6 @@ class AppStyle {
     DisplayMode.iPhone => 40.0,
     DisplayMode.iPadPortrait => 48.0,
     DisplayMode.macOS => 40.0,
-    // TODO: Handle this case.
     DisplayMode.iPadLandscape => 40.0,
   };
 
@@ -85,7 +80,6 @@ class AppStyle {
     DisplayMode.iPhone => 32.0,
     DisplayMode.iPadPortrait => 40.0,
     DisplayMode.macOS => 32.0,
-    // TODO: Handle this case.
     DisplayMode.iPadLandscape => 40.0,
   };
 
@@ -93,7 +87,6 @@ class AppStyle {
     DisplayMode.iPhone => 16.0,
     DisplayMode.iPadPortrait => 24.0,
     DisplayMode.macOS => 16.0,
-    // TODO: Handle this case.
     DisplayMode.iPadLandscape => 24.0,
   };
 
@@ -101,15 +94,13 @@ class AppStyle {
     DisplayMode.iPhone => 11.0,
     DisplayMode.iPadPortrait => 13.0,
     DisplayMode.macOS => 11.0,
-    // TODO: Handle this case.
     DisplayMode.iPadLandscape => 13.0,
   };
 
   double get actionButtonHeight => switch(mode){
     DisplayMode.iPhone => 48.0,
     DisplayMode.iPadPortrait => 56.0,
-    DisplayMode.macOS => 56.0,
-    // TODO: Handle this case.
+    DisplayMode.macOS => 64.0,
     DisplayMode.iPadLandscape => 48.0,
   };
 
@@ -117,7 +108,6 @@ class AppStyle {
     DisplayMode.iPhone => 16.0,
     DisplayMode.iPadPortrait => 24.0,
     DisplayMode.macOS => 24.0,
-    // TODO: Handle this case.
     DisplayMode.iPadLandscape => 16.0,
   };
 
@@ -125,7 +115,6 @@ class AppStyle {
     DisplayMode.iPhone => 12.0,
     DisplayMode.iPadPortrait => 16.0,
     DisplayMode.macOS => 16.0,
-    // TODO: Handle this case.
     DisplayMode.iPadLandscape => 12.0,
   };
 
@@ -133,48 +122,42 @@ class AppStyle {
     DisplayMode.iPhone => 20.0,
     DisplayMode.iPadPortrait => 24.0,
     DisplayMode.macOS => 24.0,
-    // TODO: Handle this case.
     DisplayMode.iPadLandscape => 24.0,
   };
 
-  double get headerHorizontalPadding => switch (mode) {
+  double get iconButtonsHorizontalPadding => switch (mode) {
   DisplayMode.iPhone => 16.0,
   DisplayMode.iPadPortrait => 16.0,
   DisplayMode.macOS => 16.0,
-    // TODO: Handle this case.
     DisplayMode.iPadLandscape => 16.0,
 };
 
-double get headerVerticalPadding => switch (mode) {
+double get iconButtonsVerticalPadding => switch (mode) {
   DisplayMode.iPhone => 0.0,
   DisplayMode.iPadPortrait => 16.0,
   DisplayMode.macOS => 16.0,
-  // TODO: Handle this case.
   DisplayMode.iPadLandscape => 16.0,
 };
 
-double get headerHeightMultiplier => switch (mode) {
-  DisplayMode.iPhone => 0.33,  // 33% of screen height
-  DisplayMode.iPadPortrait => 0.33,   // 30% of screen height
+double get completionTimeCardHeightMultiplier => switch (mode) {
+  DisplayMode.iPhone => 0.33,
+  DisplayMode.iPadPortrait => 0.33,
   DisplayMode.macOS => 0.5,
-  // TODO: Handle this case.
   DisplayMode.iPadLandscape => 0.5,
 };
 
 // --- Form & Middle Section ---
-double get bodyHorizontalPadding => switch (mode) {
+double get inputFieldHorizontalPadding => switch (mode) {
   DisplayMode.iPhone => 16.0,
   DisplayMode.iPadPortrait => 120.0,
   DisplayMode.macOS => 80.0,
-  // TODO: Handle this case.
   DisplayMode.iPadLandscape => 60.0,
 };
 
-double get bodyVerticalPadding => switch (mode) {
+double get inputFieldVerticalPadding => switch (mode) {
   DisplayMode.iPhone => 16.0,
   DisplayMode.iPadPortrait => 60.0,
   DisplayMode.macOS => 10.0,
-  // TODO: Handle this case.
   DisplayMode.iPadLandscape => 10.0,
 };
 
@@ -182,32 +165,43 @@ double get inputFieldSpacing => switch (mode) {
   DisplayMode.iPhone => 30.0,
   DisplayMode.iPadPortrait => 60.0,
   DisplayMode.macOS => 50.0,
-  // TODO: Handle this case.
   DisplayMode.iPadLandscape => 50.0,
 };
 
 // --- Bottom Action Buttons ---
+
+double get actionButtonsHorizontalPadding => switch(mode){
+  DisplayMode.iPhone => 16.0,
+  DisplayMode.iPadPortrait => 120.0,
+  DisplayMode.macOS => 80.0,
+  DisplayMode.iPadLandscape => 60.0,
+};
+
+double get actionButtonsVerticalPadding => switch(mode){
+  DisplayMode.iPhone => 16.0,
+  DisplayMode.iPadPortrait => 60.0,
+  DisplayMode.macOS => 10.0,
+  DisplayMode.iPadLandscape => 10.0,
+};
+
 double get bottomBarPadding => switch (mode) {
   DisplayMode.iPhone => 16.0,
   DisplayMode.iPadPortrait => 60.0,
   DisplayMode.macOS => 0.0,
-  // TODO: Handle this case.
   DisplayMode.iPadLandscape => 0.0,
 };
 
-double get actionButtonGap => switch (mode) {
+double get actionButtonSpacing => switch (mode) {
   DisplayMode.iPhone => 16.0,
   DisplayMode.iPadPortrait => 60.0,
   DisplayMode.macOS => 60.0,
-  // TODO: Handle this case.
   DisplayMode.iPadLandscape => 60.0,
 };
 
-double get radiusCompletionTimeCard => switch(mode) {
+double get completionTimeCardBorderRadius => switch(mode) {
   DisplayMode.iPhone => 45.0,
   DisplayMode.iPadPortrait => 60.0,
   DisplayMode.macOS => 0.0,
-  // TODO: Handle this case.
   DisplayMode.iPadLandscape => 0.0,
 };
 
@@ -233,7 +227,6 @@ double get timelineFontSizeHistoryCard => switch(mode){
   DisplayMode.iPhone => 0.0,
   DisplayMode.iPadPortrait => 0.0,
   DisplayMode.macOS => 14.0,
-  // TODO: Handle this case.
   DisplayMode.iPadLandscape => 14.0,
 };
 
@@ -241,7 +234,6 @@ double get timeRecordedFontSizeHistoryCard => switch(mode){
   DisplayMode.iPhone => 0.0,
   DisplayMode.iPadPortrait => 0.0,
   DisplayMode.macOS => 12.0,
-  // TODO: Handle this case.
   DisplayMode.iPadLandscape => 12.0,
 };
 
@@ -249,7 +241,6 @@ double get resultTimeFontSizeHistoryCard => switch(mode){
   DisplayMode.iPhone => 0.0,
   DisplayMode.iPadPortrait => 0.0,
   DisplayMode.macOS => 15.0,
-  // TODO: Handle this case.
   DisplayMode.iPadLandscape => 15.0,
 };
 

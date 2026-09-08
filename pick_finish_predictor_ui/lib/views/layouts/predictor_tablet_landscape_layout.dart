@@ -69,9 +69,9 @@ class PredictorTabletLandscapeLayout extends StatelessWidget {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(
-                      top: style.headerVerticalPadding,
-                      left: style.headerHorizontalPadding,
-                      right: style.headerHorizontalPadding,
+                      top: style.iconButtonsVerticalPadding,
+                      left: style.iconButtonsHorizontalPadding,
+                      right: style.iconButtonsHorizontalPadding,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -92,7 +92,7 @@ class PredictorTabletLandscapeLayout extends StatelessWidget {
 
                   Padding(
                     padding: EdgeInsets.symmetric(
-                      horizontal: style.bodyHorizontalPadding,
+                      horizontal: style.inputFieldHorizontalPadding,
                     ),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -128,7 +128,6 @@ class PredictorTabletLandscapeLayout extends StatelessWidget {
                     padding: EdgeInsets.only(
                       left: 150,
                       right: 150,
-                      //bottom: style.bottomBarPadding,
                     ),
                     child: Row(
                     children: [
@@ -139,7 +138,7 @@ class PredictorTabletLandscapeLayout extends StatelessWidget {
                           onPressed: onClear,
                         ),
                       ),
-                      SizedBox(width: style.actionButtonGap),
+                      SizedBox(width: style.actionButtonSpacing),
                       Expanded(
                         flex: 2,
                         child: CalculateButton(
@@ -160,40 +159,42 @@ class PredictorTabletLandscapeLayout extends StatelessWidget {
           // Right side
           Expanded(
             flex: 2,
-            child: Column(
-              children: [
-                // Top Container: Teal Completion Time Section
-                Container(
-                  width: double.infinity,
-                  height: MediaQuery.of(context).size.height * style.headerHeightMultiplier,
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        AppColours.secondaryBackgroundLite,
-                        AppColours.secondaryBackgroundDark,
-                      ],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                    ),
-                  ),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: style.headerHorizontalPadding,
-                    vertical: style.headerVerticalPadding,
-                  ),
-                  child: SafeArea(
-                    left: false,
-                    bottom: false,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        // Top Button Bar: Centered History, Far Right Mode
-                        Row(
-                          children: [
-                            const Spacer(),
-                            HistoryIconButton(
-                              tooltip: appStrings.tooltipHistory,
-                              onPressed: onHistory,
-                            ),
+            child: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    AppColours.secondaryBackgroundLite,
+                    AppColours.secondaryBackgroundDark,
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
+              ),
+
+              child: LayoutBuilder(
+                builder: (context, constraints){
+                  return Column(
+                    children: [
+                      SizedBox(
+                        height: constraints.maxHeight * style.completionTimeCardHeightMultiplier,
+                        width: double.infinity,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: style.iconButtonsHorizontalPadding,
+                            vertical: style.iconButtonsVerticalPadding,
+                          ),
+                child: SafeArea(
+                  left: false,
+                  bottom: false,
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          const Spacer(),
+                          HistoryIconButton(
+                            tooltip: appStrings.tooltipHistory,
+                          onPressed: onHistory,
+                          ),
                             Expanded(
                               child: Align(
                                 alignment: Alignment.centerRight,
@@ -205,31 +206,32 @@ class PredictorTabletLandscapeLayout extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(height: style.inputFieldSpacing),
+                        const Spacer(),
+                        //SizedBox(height: style.inputFieldSpacing),
                         CompletionTimeCard(
                           estimatedTime: estimatedTime,
                           isCalculated: isCalculated,
                           isOver24Hrs: isOver24Hrs,
                           appStrings: appStrings,
                         ),
+                        const Spacer(),
                       ],
                     ),
                   ),
                 ),
-
+                      ),
                 // Bottom Container: Flat History List
                 Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    color: AppColours.primaryBackground,
                     child: HistoryCard(
                       appStrings: appStrings,
                       isTablet: true,
                     ),
                   ),
-                ),
               ],
-            ),
+            );
+                },
+          ),
+      ),
           ),
         ],
       ),
