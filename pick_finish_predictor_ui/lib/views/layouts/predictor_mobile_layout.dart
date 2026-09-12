@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:pick_finish_predictor_ui/i18n/app_strings.dart';
 import 'package:pick_finish_predictor_ui/theme/app_colours.dart';
 import 'package:pick_finish_predictor_ui/views/layouts/app_style.dart';
-import 'package:pick_finish_predictor_ui/widgets/app_action_buttons.dart';
-import 'package:pick_finish_predictor_ui/widgets/app_icon_buttons.dart';
-import 'package:pick_finish_predictor_ui/widgets/app_input_field.dart';
-import 'package:pick_finish_predictor_ui/widgets/completion_time_card.dart';
+import 'package:pick_finish_predictor_ui/widgets/app_action_button.dart';
+import 'package:pick_finish_predictor_ui/widgets/app_icon_button.dart';
+import 'package:pick_finish_predictor_ui/widgets/app_text_field.dart';
+import 'package:pick_finish_predictor_ui/widgets/time_card.dart';
 
-class PredictorMobileLayout extends StatelessWidget{
-
+class PredictorMobileLayout extends StatelessWidget {
   final AppStrings appStrings;
 
   //menu buttons
@@ -16,7 +15,7 @@ class PredictorMobileLayout extends StatelessWidget{
   final VoidCallback onHelp;
   final VoidCallback onHistory;
   final VoidCallback onMode;
-  
+
   //card view
   final String estimatedTime;
   final bool isCalculated;
@@ -33,26 +32,25 @@ class PredictorMobileLayout extends StatelessWidget{
   final VoidCallback onCalculate;
 
   const PredictorMobileLayout({
-    super.key, 
-    required this.appStrings, 
+    super.key,
+    required this.appStrings,
     required this.onMenu,
-    required this.onHelp, 
-    required this.onHistory, 
-    required this.onMode, 
-    required this.estimatedTime, 
-    required this.isCalculated, 
-    required this.isOver24Hrs, 
-    required this.timeController, 
-    required this.itemsController, 
-    required this.pickersController, 
-    required this.rateController, 
-    required this.onClear, 
-    required this.onCalculate
+    required this.onHelp,
+    required this.onHistory,
+    required this.onMode,
+    required this.estimatedTime,
+    required this.isCalculated,
+    required this.isOver24Hrs,
+    required this.timeController,
+    required this.itemsController,
+    required this.pickersController,
+    required this.rateController,
+    required this.onClear,
+    required this.onCalculate,
   });
 
   @override
   Widget build(BuildContext context) {
-
     final style = AppStyle.of(context);
 
     return Scaffold(
@@ -62,114 +60,121 @@ class PredictorMobileLayout extends StatelessWidget{
         children: [
           Container(
             width: double.infinity,
-            height: MediaQuery.of(context).size.height * style.completionTimeCardHeightMultiplier,
+            height:
+                MediaQuery.of(context).size.height *
+                style.timeCardHeightMultiplier,
             decoration: BoxDecoration(
               gradient: const LinearGradient(
-                colors: [AppColours.secondaryBackgroundLite, AppColours.secondaryBackgroundDark], 
-                begin: Alignment.topCenter, 
+                colors: [
+                  AppColours.secondaryBackgroundLight,
+                  AppColours.secondaryBackgroundDark,
+                ],
+                begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
               ),
               borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(style.completionTimeCardBorderRadius),
-                bottomRight: Radius.circular(style.completionTimeCardBorderRadius),
+                bottomLeft: Radius.circular(
+                  style.timeCardBorderRadius,
+                ),
+                bottomRight: Radius.circular(
+                  style.timeCardBorderRadius,
+                ),
               ),
             ),
             //teal parts (< notch area)
             child: SafeArea(
               bottom: false,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: style.iconButtonsHorizontalPadding, vertical: style.iconButtonsVerticalPadding),
-                child: Column(children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      //main menu
-                      MenuIconButton(
-                        tooltip: appStrings.tooltipMenu,
-                        onPressed: onMenu,
-                      ),
-                      
-                      const Spacer(),
+                padding: EdgeInsets.symmetric(
+                  horizontal: style.iconButtonHorizontalPadding,
+                  vertical: style.iconButtonVerticalPadding,
+                ),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        //main menu
+                        MenuIconButton(
+                          tooltip: appStrings.tooltipMenu,
+                          onPressed: onMenu,
+                        ),
 
-                      HelpIconButton(
-                        tooltip: appStrings.tooltipHelp,
-                        onPressed: onHelp,
-                      ),
+                        const Spacer(),
 
-                      const Spacer(),
+                        HelpIconButton(
+                          tooltip: appStrings.tooltipHelp,
+                          onPressed: onHelp,
+                        ),
 
+                        const Spacer(),
 
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            
                             HistoryIconButton(
                               tooltip: appStrings.tooltipHistory,
                               onPressed: onHistory,
                             ),
-                            
+
                             ModeIconButton(
                               tooltip: appStrings.tooltipSelectMode,
                               onPressed: onMode,
                             ),
-                        ],
-                      ),
-                    ],
-                  ),
+                          ],
+                        ),
+                      ],
+                    ),
 
-                 const Spacer(),
-                //const SizedBox(height: 16),
-
-                  //Expanded(
-                    //child: Center(
-                    //child: 
-                    CompletionTimeCard(
+                    const Spacer(),
+                    TimeCard(
                       estimatedTime: estimatedTime,
                       isCalculated: isCalculated,
                       isOver24Hrs: isOver24Hrs,
                       appStrings: appStrings,
                     ),
-                    //),
-                  //),
 
-                  const Spacer(),
-                ],
+                    const Spacer(),
+                  ],
+                ),
               ),
             ),
           ),
-        ),
 
           //Middle part
           Expanded(
             child: SingleChildScrollView(
-              padding: EdgeInsets.symmetric(horizontal: style.inputFieldHorizontalPadding, vertical: style.inputFieldVerticalPadding),
+              padding: EdgeInsets.symmetric(
+                horizontal: style.textFieldHorizontalMargin,
+                vertical: style.textFieldVerticalMargin,
+              ),
               child: Column(
                 children: [
-                  AppInputField(
-                    controller: timeController, 
+                  AppTextField(
+                    controller: timeController,
                     label: appStrings.promptCurrentTime,
                   ),
 
-                  SizedBox(height: style.inputFieldSpacing),
+                  SizedBox(height: style.textFieldSpacing),
 
-                  AppInputField(
-                    controller: itemsController, 
+                  AppTextField(
+                    controller: itemsController,
                     label: appStrings.promptItemsRemaining,
                   ),
 
-                  SizedBox(height: style.inputFieldSpacing),
+                  SizedBox(height: style.textFieldSpacing),
 
-                  AppInputField(
-                    controller: pickersController, 
+                  AppTextField(
+                    controller: pickersController,
                     label: appStrings.promptNumberOfPickers,
                   ),
 
-                  SizedBox(height: style.inputFieldSpacing),
+                  SizedBox(height: style.textFieldSpacing),
 
-                  AppInputField(
-                    controller: rateController, 
+                  AppTextField(
+                    controller: rateController,
                     label: appStrings.promptAveragePickRate,
-                    errorText: appStrings.errorMessageCapacityZero,//test
+                    //errorText: appStrings.errorMessageCapacityZero,
                   ),
                 ],
               ),
@@ -182,31 +187,29 @@ class PredictorMobileLayout extends StatelessWidget{
             top: false,
             child: Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: style.actionButtonsHorizontalPadding, 
-                vertical: style.actionButtonsVerticalPadding),
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: ClearButton(
-                        strings: appStrings, 
-                        onPressed: onClear,
-                        ),
-                      ),
-                      SizedBox(width: style.actionButtonSpacing,),
-                      Expanded(
-                        flex: 2,
-                        child: CalculateButton(
-                          strings: appStrings, 
-                          onPressed: onCalculate,
-                          ),
-                        ),
-                      ],
+                horizontal: style.actionButtonHorizontalMargin,
+                vertical: style.actionButtonVerticalMargin,
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: ClearButton(strings: appStrings, onPressed: onClear),
+                  ),
+                  SizedBox(width: style.actionButtonRowSpacing),
+                  Expanded(
+                    flex: 2,
+                    child: CalculateButton(
+                      strings: appStrings,
+                      onPressed: onCalculate,
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          );
+          ),
+        ],
+      ),
+    );
   }
 }

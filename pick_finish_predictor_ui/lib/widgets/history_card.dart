@@ -22,33 +22,33 @@ class HistoryCard extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColours.tileBackground,
+        color: AppColours.historyCardPrimaryBackground,
         borderRadius: isTablet
-          ? BorderRadius.vertical(top: Radius.circular(style.handlePillRadiusHistoryCard),)
+          ? BorderRadius.vertical(top: Radius.circular(style.historyCardHandlePillBorderRadius),)
           : BorderRadius.zero,
       ),
       child: Column(
         children: [
           if(isTablet) ... [
-            const SizedBox(height: 20), //style.handlePillSpace
+            SizedBox(height: style.historyCardHandlePillContentPadding),
             Center(
               child: Container(
-                width: 40, //style.handlePillWidth
-                height: 5, //style.handlePillHeight
+                width: style.historyCardHandlePillWidth,
+                height: style.historyCardHandlePillHeight,
                 decoration: BoxDecoration(
-                  color: AppColours.sliderBackground,
-                  borderRadius: BorderRadius.circular(25), //style.handlePillRadius
+                  color: AppColours.historyCardSliderBackground,
+                  borderRadius: BorderRadius.circular(style.historyCardHandlePillBorderRadius),
                 ),
               ),
             ),
-            const SizedBox(height: 8), //style.handlePillSpacing
+            SizedBox(height: style.historyCardHandlePillSpacing),
           ],
           Expanded(
             child: ListView(
               
               padding: EdgeInsets.symmetric(
-                horizontal: style.horizontalPaddingHistoryCard,
-                vertical: style.verticalPaddingHistoryCard,
+                horizontal: style.historyCardHorizontalMargin,
+                vertical: style.historyCardVerticalMargin,
               ),
               
               children: [
@@ -91,33 +91,33 @@ class HistoryCard extends StatelessWidget {
         Text(
           timeline,
           style: TextStyle(
-            color: AppColours.tileForegroundSecondary,
-            fontSize: style.timelineFontSizeHistoryCard,
+            color: AppColours.historyCardSecondaryForeground,
+            fontSize: style.historyCardTimelineFontSize,
             fontFamily: 'Verdana',
           ),
         ),
-        SizedBox(height: style.spacingBetweenListViewElementsHistoryCard),
+        SizedBox(height: style.historyCardElementSpacing),
         Text(
           "Time recorded: $timeRecorded",
           style: TextStyle(
-            color: AppColours.tileForegroundSecondary,
-            fontSize: style.timeRecordedFontSizeHistoryCard,
+            color: AppColours.historyCardSecondaryForeground,
+            fontSize: style.historyCardTimeRecordedFontSize,
             fontFamily: 'Verdana',
           ),
         ),
-        SizedBox(height: style.spacingBetweenListViewElementsHistoryCard),
+        SizedBox(height: style.historyCardElementSpacing),
         Text(
           resultTime,
           style: TextStyle(
-            color: AppColours.tileForegroundPrimary,
-            fontSize: style.resultTimeFontSizeHistoryCard,
+            color: AppColours.historyCardPrimaryForeground,
+            fontSize: style.historyCardResultTimeFontSize,
             fontFamily: 'Verdana',
           ),
         ),
         if(showDivider) ...[
-          SizedBox(height: style.spacingBetweenListViewLastElementDividerHistoryCard),
-          Divider(color: AppColours.dividerBackground, height: style.dividerHeightHistoryCard),
-          SizedBox(height: style.spacingBetweenListViewItemsHistoryCard)
+          SizedBox(height: style.historyCardLastElementSpacing),
+          Divider(color: AppColours.historyCardDividerBackground, height: style.historyCardDividerHeight),
+          SizedBox(height: style.historyCardItemSpacing)
         ],
       ],
     );

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pick_finish_predictor_ui/theme/app_colours.dart';
 import 'package:pick_finish_predictor_ui/views/layouts/app_style.dart';
 
-class AppInputField extends StatelessWidget {
+class AppTextField extends StatelessWidget {
   final String label;
   final TextEditingController controller;
   final String? errorText;
@@ -11,7 +11,7 @@ class AppInputField extends StatelessWidget {
   final ValueChanged<String>? onChanged;
   final VoidCallback? onClear;
 
-  const AppInputField({
+  const AppTextField({
     super.key,
     required this.label,
     required this.controller,
@@ -54,7 +54,6 @@ class AppInputField extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: _resolveBackgroundColour(hasError),
-        borderRadius: BorderRadius.circular(0),
       ),
       child: ValueListenableBuilder<TextEditingValue>(
         valueListenable: controller,
@@ -67,26 +66,26 @@ class AppInputField extends StatelessWidget {
             onChanged: onChanged,
             style: TextStyle(
               color: AppColours.textFieldForegroundNormal,
-              fontSize: style.textFieldFont,
+              fontSize: style.textFieldFontSize,
               fontFamily: 'Verdana',
             ),
             decoration: InputDecoration(
               labelText: label,
               labelStyle: TextStyle(
                 color: AppColours.textFieldForegroundHint,
-                fontSize: style.textFieldFont,
+                fontSize: style.textFieldFontSize,
                 fontFamily: 'Verdana',
               ),
               floatingLabelStyle: TextStyle(
                 color: AppColours.textFieldForegroundHint,
-                fontSize: style.textFieldFont,
+                fontSize: style.textFieldFontSize,
                 fontFamily: 'Verdana',
               ),
               floatingLabelBehavior: FloatingLabelBehavior.auto,
               isDense: true,
               contentPadding: EdgeInsets.symmetric(
-                horizontal: style.textFieldVerticalPadding,
-                vertical: style.textFieldVerticalPadding,
+                horizontal: style.textFieldHorizontalContentPadding,
+                vertical: style.textFieldVerticalContentPadding,
               ),
               border: InputBorder.none,
               suffixIcon: hasText ? _buildSuffixIcon(style: style) : null,
@@ -99,14 +98,14 @@ class AppInputField extends StatelessWidget {
 
   Widget _buildSuffixIcon({required AppStyle style}) {
     return IconButton(
-      padding: const EdgeInsets.only(right: 12.0),
+      padding: EdgeInsets.only(right: style.textFieldCloseIconMargin),
       constraints: BoxConstraints(
-        minWidth: style.textFieldSuffixWidth,
-        minHeight: style.textFieldSuffixHeight,
+        minWidth: style.textFieldCloseIconWidth,
+        minHeight: style.textFieldCloseIconHeight,
       ),
       icon: Icon(
         Icons.close,
-        size: style.textFieldCloseIcon,
+        size: style.textFieldCloseIconSize,
         color: AppColours.textFieldForegroundNormal,
       ),
       onPressed: () {
@@ -121,14 +120,14 @@ class AppInputField extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const SizedBox(height: 4),
+        SizedBox(height: style.textFieldErrorMessageSpacing),
         Align(
           alignment: Alignment.centerRight,
           child: Text(
             errorText!,
             style: TextStyle(
               color: AppColours.textFieldForegroundInvalid,
-              fontSize: style.textFieldErrorMessage,
+              fontSize: style.textFieldErrorMessageFontSize,
               fontFamily: 'Verdana',
             ),
           ),

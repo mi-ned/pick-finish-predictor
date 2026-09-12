@@ -21,8 +21,8 @@ class AppIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final double effectiveIconSize = iconSize ?? AppStyle.of(context).headerIconSize;
-
+    final double effectiveIconSize = iconSize ?? AppStyle.of(context).iconButtonSize;
+    
     return IconButton(
       icon: Icon(
         icon,
@@ -32,8 +32,8 @@ class AppIconButton extends StatelessWidget {
       tooltip: tooltip,
       onPressed: onPressed,
       constraints: BoxConstraints(
-        minWidth: effectiveIconSize * 1.125,
-        minHeight: effectiveIconSize * 1.125,
+        minWidth: effectiveIconSize * AppStyle.of(context).iconButtonTouchTargetMultiplier,
+        minHeight: effectiveIconSize * AppStyle.of(context).iconButtonTouchTargetMultiplier,
       )
     );
   }

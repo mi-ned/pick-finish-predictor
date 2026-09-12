@@ -36,14 +36,14 @@ class BaseAppButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: isEnabled ? onPressed : null,
       style: ButtonStyle(
-        minimumSize: WidgetStateProperty.all(Size(80,style.actionButtonHeight)),
+        minimumSize: WidgetStateProperty.all(Size(style.actionButtonWidth, style.actionButtonHeight)),
         padding: WidgetStateProperty.all(
-          EdgeInsets.symmetric(horizontal: style.actionButtonHorizontalPadding, vertical: style.actionButtonVerticalPadding),
+          EdgeInsets.symmetric(horizontal: style.actionButtonHorizontalContentPadding, vertical: style.actionButtonVerticalContentPadding),
         ),
         shape: WidgetStateProperty.all(
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(style.actionButtonHeight/2)),
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(style.actionButtonBorderRadius)),
       ),
-      elevation: WidgetStateProperty.all(0),
+      elevation: WidgetStateProperty.all(style.actionButtonElevation),
       backgroundColor: ButtonStateResolver.resolveBackground(
         enabled: bgEnabled, 
         pressed: bgPressed, 

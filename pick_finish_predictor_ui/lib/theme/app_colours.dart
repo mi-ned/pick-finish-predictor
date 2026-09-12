@@ -4,7 +4,7 @@ import 'dart:ui';
 abstract class AppColours {
   //Main colours
   static const Color primaryBackground = Color(0xFF252525);
-  static const Color secondaryBackgroundLite = Color(0xFF00897b);
+  static const Color secondaryBackgroundLight = Color(0xFF00897b);
   static const Color secondaryBackgroundDark = Color(0xFF263238);
 
   //TextField
@@ -52,12 +52,12 @@ abstract class AppColours {
 
   //History Tile
   //Background
-  static const Color tileBackground = Color(0xff323232);
-  static const Color sliderBackground = Color(0xff888888);
-  static const Color dividerBackground = Color(0xff888888);
+  static const Color historyCardPrimaryBackground = Color(0xff323232);
+  static const Color historyCardSliderBackground = Color(0xff888888);
+  static const Color historyCardDividerBackground = Color(0xff888888);
 
   //Foreground
-  static const Color tileForegroundPrimary = Color(0xfff0f0f0);
-  static const Color tileForegroundSecondary = Color(0xffa4a4a4);
+  static const Color historyCardPrimaryForeground = Color(0xfff0f0f0);
+  static const Color historyCardSecondaryForeground = Color(0xffa4a4a4);
   
 }

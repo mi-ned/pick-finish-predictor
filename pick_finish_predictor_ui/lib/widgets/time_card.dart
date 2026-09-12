@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:pick_finish_predictor_ui/i18n/app_strings.dart';
 import 'package:pick_finish_predictor_ui/views/layouts/app_style.dart';
 
-class CompletionTimeCard extends StatelessWidget {
+class TimeCard extends StatelessWidget {
   final String estimatedTime;
   final bool isCalculated;
   final bool isOver24Hrs;
   final AppStrings appStrings;
 
-  const CompletionTimeCard({
+  const TimeCard({
     super.key,
     required this.estimatedTime,
     this.isCalculated = false,
@@ -28,33 +28,32 @@ class CompletionTimeCard extends StatelessWidget {
           appStrings.headerEstimatedCompletionTime,
           style: TextStyle(
             color: Colors.white,
-            fontSize: style.messagesCompletionTimeCard,
+            fontSize: style.timeCardTitleFontSize,
             fontFamily: 'Verdana',
           ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: style.timeCardSpacing),
         Text(
           estimatedTime,
           style: TextStyle(
             color: Colors.white,
-            fontSize: style.timeCompletionTimeCard,
+            fontSize: style.timeCardEstimateFontSize,
             fontWeight: FontWeight.normal,
             fontFamily: 'Verdana',
           ),
         ),
 
         if(isOver24Hrs) ...[
-          const SizedBox(height: 8),
+          SizedBox(height: style.timeCardSpacing),
           Text(
             appStrings.warningMessageExploitativeWorkload,
             style: TextStyle(
               color: Colors.white,
-              fontSize: style.messagesCompletionTimeCard,
+              fontSize: style.timeCardFooterFontSize,
               fontFamily: 'Verdana',
             ),
           ),
         ]
-        //const SizedBox(height: 8),
       ],
     );
   }

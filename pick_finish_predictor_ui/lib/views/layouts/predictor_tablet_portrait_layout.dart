@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:pick_finish_predictor_ui/i18n/app_strings.dart';
 import 'package:pick_finish_predictor_ui/theme/app_colours.dart';
 import 'package:pick_finish_predictor_ui/views/layouts/app_style.dart';
-import 'package:pick_finish_predictor_ui/widgets/app_action_buttons.dart';
-import 'package:pick_finish_predictor_ui/widgets/app_icon_buttons.dart';
-import 'package:pick_finish_predictor_ui/widgets/app_input_field.dart';
-import 'package:pick_finish_predictor_ui/widgets/completion_time_card.dart';
+import 'package:pick_finish_predictor_ui/widgets/app_action_button.dart';
+import 'package:pick_finish_predictor_ui/widgets/app_icon_button.dart';
+import 'package:pick_finish_predictor_ui/widgets/app_text_field.dart';
+import 'package:pick_finish_predictor_ui/widgets/time_card.dart';
 
 class PredictorTabletPortraitLayout extends StatelessWidget{
 
@@ -62,23 +62,23 @@ class PredictorTabletPortraitLayout extends StatelessWidget{
         children: [
           Container(
             width: double.infinity,
-            height: MediaQuery.of(context).size.height * style.completionTimeCardHeightMultiplier,
+            height: MediaQuery.of(context).size.height * style.timeCardHeightMultiplier,
             decoration: BoxDecoration(
               gradient: const LinearGradient(
-                colors: [AppColours.secondaryBackgroundLite, AppColours.secondaryBackgroundDark], 
+                colors: [AppColours.secondaryBackgroundLight, AppColours.secondaryBackgroundDark], 
                 begin: Alignment.topCenter, 
                 end: Alignment.bottomCenter,
               ),
               borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(style.completionTimeCardBorderRadius),
-                bottomRight: Radius.circular(style.completionTimeCardBorderRadius),
+                bottomLeft: Radius.circular(style.timeCardBorderRadius),
+                bottomRight: Radius.circular(style.timeCardBorderRadius),
               ),
             ),
             //teal parts (< notch area)
             child: SafeArea(
               bottom: false,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: style.iconButtonsHorizontalPadding, vertical: style.iconButtonsVerticalPadding),
+                padding: EdgeInsets.symmetric(horizontal: style.iconButtonHorizontalPadding, vertical: style.iconButtonVerticalPadding),
                 child: Column(children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -97,7 +97,6 @@ class PredictorTabletPortraitLayout extends StatelessWidget{
                       ),
 
                       const Spacer(),
-
 
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -118,19 +117,13 @@ class PredictorTabletPortraitLayout extends StatelessWidget{
                   ),
 
                  const Spacer(),
-                //const SizedBox(height: 16),
 
-                  //Expanded(
-                    //child: Center(
-                    //child: 
-                    CompletionTimeCard(
+                    TimeCard(
                       estimatedTime: estimatedTime,
                       isCalculated: isCalculated,
                       isOver24Hrs: isOver24Hrs,
                       appStrings: appStrings,
                     ),
-                    //),
-                  //),
 
                   const Spacer(),
                 ],
@@ -142,34 +135,34 @@ class PredictorTabletPortraitLayout extends StatelessWidget{
           //Middle part
           Expanded(
             child: SingleChildScrollView(
-              padding: EdgeInsets.symmetric(horizontal: style.inputFieldHorizontalPadding, vertical: style.inputFieldVerticalPadding),
+              padding: EdgeInsets.symmetric(horizontal: style.textFieldHorizontalMargin, vertical: style.textFieldVerticalMargin),
               child: Column(
                 children: [
-                  AppInputField(
+                  AppTextField(
                     controller: timeController, 
                     label: appStrings.promptCurrentTime,
                   ),
 
-                  SizedBox(height: style.inputFieldSpacing),
+                  SizedBox(height: style.textFieldSpacing),
 
-                  AppInputField(
+                  AppTextField(
                     controller: itemsController, 
                     label: appStrings.promptItemsRemaining,
                   ),
 
-                  SizedBox(height: style.inputFieldSpacing),
+                  SizedBox(height: style.textFieldSpacing),
 
-                  AppInputField(
+                  AppTextField(
                     controller: pickersController, 
                     label: appStrings.promptNumberOfPickers,
                   ),
 
-                  SizedBox(height: style.inputFieldSpacing),
+                  SizedBox(height: style.textFieldSpacing),
 
-                  AppInputField(
+                  AppTextField(
                     controller: rateController, 
                     label: appStrings.promptAveragePickRate,
-                    errorText: appStrings.errorMessageCapacityZero,//test
+                    //errorText: appStrings.errorMessageCapacityZero,
                   ),
                 ],
               ),
@@ -182,18 +175,18 @@ class PredictorTabletPortraitLayout extends StatelessWidget{
             top: false,
             child: Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: style.inputFieldHorizontalPadding, 
-                vertical: style.bottomBarPadding),
+                horizontal: style.actionButtonHorizontalMargin,
+                vertical: style.actionButtonVerticalMargin),
                 child: Row(
                   children: [
                     Expanded(
                       flex: 1,
                       child: ClearButton(
-                        strings: appStrings, 
+                        strings: appStrings,
                         onPressed: onClear,
                         ),
                       ),
-                      SizedBox(width: style.actionButtonSpacing,),
+                      SizedBox(width: style.actionButtonRowSpacing,),
                       Expanded(
                         flex: 2,
                         child: CalculateButton(

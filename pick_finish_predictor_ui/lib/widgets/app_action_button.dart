@@ -15,7 +15,6 @@ class CalculateButton extends StatelessWidget {
     this.isEnabled = true,
   });
 
-
   @override
   Widget build(BuildContext context) {
     return BaseAppButton(
@@ -43,7 +42,6 @@ class ClearButton extends StatelessWidget {
     required this.onPressed,
     this.isEnabled = true,
   });
-
 
   @override
   Widget build(BuildContext context) {

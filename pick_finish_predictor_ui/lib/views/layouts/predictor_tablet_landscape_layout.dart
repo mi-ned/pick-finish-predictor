@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:pick_finish_predictor_ui/i18n/app_strings.dart';
 import 'package:pick_finish_predictor_ui/theme/app_colours.dart';
 import 'package:pick_finish_predictor_ui/views/layouts/app_style.dart';
-import 'package:pick_finish_predictor_ui/widgets/app_action_buttons.dart';
-import 'package:pick_finish_predictor_ui/widgets/app_icon_buttons.dart';
-import 'package:pick_finish_predictor_ui/widgets/app_input_field.dart';
-import 'package:pick_finish_predictor_ui/widgets/completion_time_card.dart';
+import 'package:pick_finish_predictor_ui/widgets/app_action_button.dart';
+import 'package:pick_finish_predictor_ui/widgets/app_icon_button.dart';
+import 'package:pick_finish_predictor_ui/widgets/app_text_field.dart';
+import 'package:pick_finish_predictor_ui/widgets/time_card.dart';
 import 'package:pick_finish_predictor_ui/widgets/history_card.dart';
 
 class PredictorTabletLandscapeLayout extends StatelessWidget {
@@ -69,9 +69,9 @@ class PredictorTabletLandscapeLayout extends StatelessWidget {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(
-                      top: style.iconButtonsVerticalPadding,
-                      left: style.iconButtonsHorizontalPadding,
-                      right: style.iconButtonsHorizontalPadding,
+                      top: style.iconButtonVerticalPadding,
+                      left: style.iconButtonHorizontalPadding,
+                      right: style.iconButtonHorizontalPadding,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -92,30 +92,30 @@ class PredictorTabletLandscapeLayout extends StatelessWidget {
 
                   Padding(
                     padding: EdgeInsets.symmetric(
-                      horizontal: style.inputFieldHorizontalPadding,
+                      horizontal: style.textFieldHorizontalMargin,
                     ),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        AppInputField(
+                        AppTextField(
                           controller: timeController,
                           label: appStrings.promptCurrentTime,
                         ),
-                        SizedBox(height: style.inputFieldSpacing),
-                        AppInputField(
+                        SizedBox(height: style.textFieldSpacing),
+                        AppTextField(
                           controller: itemsController,
                           label: appStrings.promptItemsRemaining,
                         ),
-                        SizedBox(height: style.inputFieldSpacing),
-                        AppInputField(
+                        SizedBox(height: style.textFieldSpacing),
+                        AppTextField(
                           controller: pickersController,
                           label: appStrings.promptNumberOfPickers,
                         ),
-                        SizedBox(height: style.inputFieldSpacing),
-                        AppInputField(
+                        SizedBox(height: style.textFieldSpacing),
+                        AppTextField(
                           controller: rateController,
                           label: appStrings.promptAveragePickRate,
-                          errorText: appStrings.errorMessageCapacityZero, // test
+                          //errorText: appStrings.errorMessageCapacityZero, // test
                         ),
                       ],
                     ),
@@ -126,8 +126,8 @@ class PredictorTabletLandscapeLayout extends StatelessWidget {
 
                   Padding(
                     padding: EdgeInsets.only(
-                      left: 150,
-                      right: 150,
+                      left: style.actionButtonHorizontalMargin,
+                      right: style.actionButtonHorizontalMargin,
                     ),
                     child: Row(
                     children: [
@@ -138,7 +138,7 @@ class PredictorTabletLandscapeLayout extends StatelessWidget {
                           onPressed: onClear,
                         ),
                       ),
-                      SizedBox(width: style.actionButtonSpacing),
+                      SizedBox(width: style.actionButtonRowSpacing),
                       Expanded(
                         flex: 2,
                         child: CalculateButton(
@@ -163,7 +163,7 @@ class PredictorTabletLandscapeLayout extends StatelessWidget {
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    AppColours.secondaryBackgroundLite,
+                    AppColours.secondaryBackgroundLight,
                     AppColours.secondaryBackgroundDark,
                   ],
                   begin: Alignment.topCenter,
@@ -176,12 +176,12 @@ class PredictorTabletLandscapeLayout extends StatelessWidget {
                   return Column(
                     children: [
                       SizedBox(
-                        height: constraints.maxHeight * style.completionTimeCardHeightMultiplier,
+                        height: constraints.maxHeight * style.timeCardHeightMultiplier,
                         width: double.infinity,
                         child: Padding(
                           padding: EdgeInsets.symmetric(
-                            horizontal: style.iconButtonsHorizontalPadding,
-                            vertical: style.iconButtonsVerticalPadding,
+                            horizontal: style.iconButtonHorizontalPadding,
+                            vertical: style.iconButtonVerticalPadding,
                           ),
                 child: SafeArea(
                   left: false,
@@ -208,7 +208,7 @@ class PredictorTabletLandscapeLayout extends StatelessWidget {
                         ),
                         const Spacer(),
                         //SizedBox(height: style.inputFieldSpacing),
-                        CompletionTimeCard(
+                        TimeCard(
                           estimatedTime: estimatedTime,
                           isCalculated: isCalculated,
                           isOver24Hrs: isOver24Hrs,
