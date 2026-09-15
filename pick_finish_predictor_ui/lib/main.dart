@@ -1,108 +1,157 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:pick_finish_predictor_ui/i18n/strings_en.dart';
-import 'package:pick_finish_predictor_ui/theme/app_colours.dart';
+import 'package:pick_finish_predictor_ui/views/layouts/app_breakpoints.dart';
 import 'package:pick_finish_predictor_ui/views/layouts/predictor_desktop_layout.dart';
 import 'package:pick_finish_predictor_ui/views/layouts/predictor_mobile_layout.dart';
 import 'package:pick_finish_predictor_ui/views/layouts/predictor_tablet_landscape_layout.dart';
 import 'package:pick_finish_predictor_ui/views/layouts/predictor_tablet_portrait_layout.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  // Hide system overlays for full-screen immersive UI
-  await SystemChrome.setEnabledSystemUIMode(
-    SystemUiMode.immersiveSticky,
-    overlays: [],
-  );
-
-  runApp(const PickFinishPredictorApp());
+void main() {
+  runApp(const MyApp());
 }
 
-class PickFinishPredictorApp extends StatelessWidget {
-  const PickFinishPredictorApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
+      title: 'Pick Finish Predictor',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        scaffoldBackgroundColor: AppColours.primaryBackground,
-      ),
-      home: const PredictorTestPage(),
+      home: PredictorScreen(),
     );
   }
 }
 
-class PredictorTestPage extends StatefulWidget {
-  const PredictorTestPage({super.key});
+class PredictorScreen extends StatefulWidget {
+  const PredictorScreen({super.key});
 
   @override
-  State<PredictorTestPage> createState() => _PredictorTestPageState();
+  State<PredictorScreen> createState() => _PredictorScreenState();
 }
 
-class _PredictorTestPageState extends State<PredictorTestPage> {
-  late final TextEditingController _timeController;
-  late final TextEditingController _itemsController;
-  late final TextEditingController _pickersController;
-  late final TextEditingController _rateController;
+class _PredictorScreenState extends State<PredictorScreen> {
+  // Shared Form Controllers
+  final timeController = TextEditingController(text: '08:00');
+  final itemsController = TextEditingController(text: '1250');
+  final pickersController = TextEditingController(text: '5');
+  final rateController = TextEditingController(text: '45');
 
-  @override
-  void initState() {
-    super.initState();
-    _timeController = TextEditingController(text: '');
-    _itemsController = TextEditingController(text: '67');
-    _pickersController = TextEditingController(text: '');
-    _rateController = TextEditingController(text: '');
-  }
+  // Shared Calculation State
+  String estimatedTime = '13:33';
+  bool isCalculated = true;
+  bool isOver24Hrs = false;
 
   @override
   void dispose() {
-    _timeController.dispose();
-    _itemsController.dispose();
-    _pickersController.dispose();
-    _rateController.dispose();
+    timeController.dispose();
+    itemsController.dispose();
+    pickersController.dispose();
+    rateController.dispose();
     super.dispose();
+  }
+
+  void _onCalculate() {
+    setState(() {
+      isCalculated = true;
+      estimatedTime = '14:15';
+    });
+  }
+
+  void _onClear() {
+    setState(() {
+      timeController.clear();
+      itemsController.clear();
+      pickersController.clear();
+      rateController.clear();
+      isCalculated = false;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColours.primaryBackground,
-      body: LayoutBuilder(
-        builder: (context, constraints) {
-          // If the window gets squeezed below target dimensions, scale everything down uniformly
-          return InteractiveViewer(
-            panEnabled: false,
-            scaleEnabled: false,
-            child: FittedBox(
-              fit: BoxFit.scaleDown,
-              alignment: Alignment.center,
-              child: SizedBox(
-                // Force a stable target baseline (e.g., 1000x650)
-                width: constraints.maxWidth < 1000 ? 1000 : constraints.maxWidth,
-                height: constraints.maxHeight < 650 ? 650 : constraints.maxHeight,
-                child: PredictorDesktopLayout(
-                  appStrings: StringsEn(),
-                  onMenu: () {},
-                  onHelp: () {},
-                  onHistory: () {},
-                  onMode: () {},
-                  estimatedTime: '00:00',
-                  isCalculated: false,
-                  isOver24Hrs: true,
-                  timeController: _timeController,
-                  itemsController: _itemsController,
-                  pickersController: _pickersController,
-                  rateController: _rateController,
-                  onClear: () {},
-                  onCalculate: () {},
-                ),
-              ),
-            ),
-          );
-        },
-      ),
+    final appStrings = StringsEn();
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        // Query the active mode from your AppBreakpoints helper
+        final mode = AppBreakpoints.getMode(context);
+
+        switch (mode) {
+          case DisplayMode.macOS:
+
+          return PredictorDesktopLayout(
+              appStrings: appStrings,
+              onMenu: () => debugPrint('Menu tapped'),
+              onHelp: () => debugPrint('Help tapped'),
+              onHistory: () => debugPrint('History tapped'),
+              onMode: () => debugPrint('Mode tapped'),
+              timeController: timeController,
+              itemsController: itemsController,
+              pickersController: pickersController,
+              rateController: rateController,
+              onClear: _onClear,
+              onCalculate: _onCalculate,
+              estimatedTime: estimatedTime,
+              isCalculated: isCalculated,
+              isOver24Hrs: isOver24Hrs,
+            );
+
+          case DisplayMode.iPadLandscape:
+            return PredictorTabletLandscapeLayout(
+              appStrings: appStrings,
+              onMenu: () => debugPrint('Menu tapped'),
+              onHelp: () => debugPrint('Help tapped'),
+              onHistory: () => debugPrint('History tapped'),
+              onMode: () => debugPrint('Mode tapped'),
+              timeController: timeController,
+              itemsController: itemsController,
+              pickersController: pickersController,
+              rateController: rateController,
+              onClear: _onClear,
+              onCalculate: _onCalculate,
+              estimatedTime: estimatedTime,
+              isCalculated: isCalculated,
+              isOver24Hrs: isOver24Hrs,
+            );
+
+          case DisplayMode.iPadPortrait:
+            return PredictorTabletPortraitLayout(
+              appStrings: appStrings,
+              onMenu: () => debugPrint('Menu tapped'),
+              onHelp: () => debugPrint('Help tapped'),
+              onHistory: () => debugPrint('History tapped'),
+              onMode: () => debugPrint('Mode tapped'),
+              timeController: timeController,
+              itemsController: itemsController,
+              pickersController: pickersController,
+              rateController: rateController,
+              onClear: _onClear,
+              onCalculate: _onCalculate,
+              estimatedTime: estimatedTime,
+              isCalculated: isCalculated,
+              isOver24Hrs: isOver24Hrs,
+            );
+
+          case DisplayMode.iPhone:
+          return PredictorMobileLayout(
+              appStrings: appStrings,
+              onMenu: () => debugPrint('Menu tapped'),
+              onHelp: () => debugPrint('Help tapped'),
+              onHistory: () => debugPrint('History tapped'),
+              onMode: () => debugPrint('Mode tapped'),
+              timeController: timeController,
+              itemsController: itemsController,
+              pickersController: pickersController,
+              rateController: rateController,
+              onClear: _onClear,
+              onCalculate: _onCalculate,
+              estimatedTime: estimatedTime,
+              isCalculated: isCalculated,
+              isOver24Hrs: isOver24Hrs,
+            );
+        }
+      },
     );
   }
 }

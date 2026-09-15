@@ -44,6 +44,13 @@ double get iconButtonTouchTargetMultiplier => switch(mode){
 
 };
 
+double get iconButtonSpacing => switch(mode){
+  DisplayMode.iPhone => 8.0,
+  DisplayMode.iPadPortrait => 8.0,
+  DisplayMode.macOS => 8.0,
+  DisplayMode.iPadLandscape => 8.0,
+};
+
   //Time Card
   double get timeCardTitleFontSize => switch (mode){
     DisplayMode.iPhone => 14.0,
@@ -231,9 +238,9 @@ DisplayMode.iPhone => 1.0,
 
 double get actionButtonHorizontalMargin => switch(mode){
   DisplayMode.iPhone => 16.0,
-  DisplayMode.iPadPortrait => 150.0,
+  DisplayMode.iPadPortrait => 120.0,
   DisplayMode.macOS => 150.0,
-  DisplayMode.iPadLandscape => 60.0,
+  DisplayMode.iPadLandscape => 120.0,
 };
 
 double get actionButtonVerticalMargin => switch(mode){
@@ -251,6 +258,10 @@ double get actionButtonRowSpacing => switch (mode) {
 };
 
 //History Card
+
+//Radii
+double get historyCardBorderRadius => mode == DisplayMode.iPadLandscape ? 45.0 : 0.0;
+
 //Handle Pill
 double get historyCardHandlePillContentPadding => mode == DisplayMode.iPadLandscape ? 20.0 : 0.0;
 
@@ -328,5 +339,7 @@ double get historyCardDividerHeight => switch(mode){
   DisplayMode.macOS => 1.0,
   DisplayMode.iPadLandscape => 1.0,
 };
+
+  
 
 }

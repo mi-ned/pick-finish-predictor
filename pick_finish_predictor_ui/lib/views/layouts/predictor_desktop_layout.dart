@@ -60,175 +60,189 @@ class PredictorDesktopLayout extends StatelessWidget {
       backgroundColor: AppColours.primaryBackground,
       body: Row(
         children: [
-          // Left side
-          Expanded(
-            flex: 3,
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: style.iconButtonVerticalPadding,
-                      left: style.iconButtonHorizontalPadding,
-                      right: style.iconButtonHorizontalPadding,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        MenuIconButton(
-                          tooltip: appStrings.tooltipMenu,
-                          onPressed: onMenu,
-                        ),
-                        HelpIconButton(
-                          tooltip: appStrings.tooltipHelp,
-                          onPressed: onHelp,
-                        ),
-                      ],
-                    ),
-                  ),
+          _buildLeftSide(style, context),
+          _buildRightSide(style, context),
+        ],
+      ),
+    );
+  }
 
-                  const Spacer(),
+  //Left Side
+  Widget _buildLeftSide(AppStyle style, BuildContext context) {
+    return Expanded(
+      flex: 3,
+      child: Column(
+        children: [
+          _buildLeftSideIconButtons(style),
+          const Spacer(),
+          _buildTextFields(style),
+          const Spacer(),
+          _buildActionButtons(style),
+          const Spacer(),
+        ],
+      ),
+    );
+  }
 
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: style.textFieldHorizontalMargin,
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        AppTextField(
-                          controller: timeController,
-                          label: appStrings.promptCurrentTime,
-                        ),
-                        SizedBox(height: style.textFieldSpacing),
-                        AppTextField(
-                          controller: itemsController,
-                          label: appStrings.promptItemsRemaining,
-                        ),
-                        SizedBox(height: style.textFieldSpacing),
-                        AppTextField(
-                          controller: pickersController,
-                          label: appStrings.promptNumberOfPickers,
-                        ),
-                        SizedBox(height: style.textFieldSpacing),
-                        AppTextField(
-                          controller: rateController,
-                          label: appStrings.promptAveragePickRate,
-                          //errorText: appStrings.errorMessageCapacityZero,
-                        ),
-                      ],
-                    ),
-                  ),
+  Widget _buildLeftSideIconButtons(AppStyle style) {
+    return Padding(
+      padding: EdgeInsets.only(
+        top: style.iconButtonVerticalPadding,
+        left: style.iconButtonHorizontalPadding,
+        right: style.iconButtonHorizontalPadding,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          MenuIconButton(tooltip: appStrings.tooltipMenu, onPressed: onMenu),
+          HelpIconButton(tooltip: appStrings.tooltipHelp, onPressed: onHelp),
+        ],
+      ),
+    );
+  }
 
-                  const Spacer(),
-
-                  Padding(
-                    padding: EdgeInsets.only(
-                      left: style.actionButtonHorizontalMargin,
-                      right: style.actionButtonHorizontalMargin,
-                    ),
-                    child: Row(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: ClearButton(
-                          strings: appStrings,
-                          onPressed: onClear,
-                        ),
-                      ),
-                      SizedBox(width: style.actionButtonRowSpacing),
-                      Expanded(
-                        flex: 2,
-                        child: CalculateButton(
-                          strings: appStrings,
-                          onPressed: onCalculate,
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  
-                ),
-                const Spacer(),
-              ],
-            ),
+  Widget _buildTextFields(AppStyle style) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: style.textFieldHorizontalMargin,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          AppTextField(
+            controller: timeController,
+            label: appStrings.promptCurrentTime,
           ),
-
-          // Right side
-          Expanded(
-            flex: 2,
-            child: Column(
-              children: [
-                // Top Container: Teal Completion Time Section
-                Container(
-                  width: double.infinity,
-                  height: MediaQuery.of(context).size.height * style.timeCardHeightMultiplier,
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        AppColours.secondaryBackgroundLight,
-                        AppColours.secondaryBackgroundDark,
-                      ],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                    ),
-                  ),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: style.iconButtonHorizontalPadding,
-                    vertical: style.iconButtonVerticalPadding,
-                  ),
-                  child: SafeArea(
-                    left: false,
-                    bottom: false,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        // Top Button Bar: Centered History, Far Right Mode
-                        Row(
-                          children: [
-                            const Spacer(),
-                            HistoryIconButton(
-                              tooltip: appStrings.tooltipHistory,
-                              onPressed: onHistory,
-                            ),
-                            Expanded(
-                              child: Align(
-                                alignment: Alignment.centerRight,
-                                child: ModeIconButton(
-                                  tooltip: appStrings.tooltipSelectMode,
-                                  onPressed: onMode,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: style.textFieldSpacing),
-                        TimeCard(
-                          estimatedTime: estimatedTime,
-                          isCalculated: isCalculated,
-                          isOver24Hrs: isOver24Hrs,
-                          appStrings: appStrings,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-
-                // Bottom Container: Flat History List
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    color: AppColours.primaryBackground,
-                    child: HistoryCard(
-                      appStrings: appStrings,
-                      isTablet: false,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          SizedBox(height: style.textFieldSpacing),
+          AppTextField(
+            controller: itemsController,
+            label: appStrings.promptItemsRemaining,
+          ),
+          SizedBox(height: style.textFieldSpacing),
+          AppTextField(
+            controller: pickersController,
+            label: appStrings.promptNumberOfPickers,
+          ),
+          SizedBox(height: style.textFieldSpacing),
+          AppTextField(
+            controller: rateController,
+            label: appStrings.promptAveragePickRate,
+            //errorText: appStrings.errorMessageCapacityZero,
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildActionButtons(AppStyle style) {
+    return Padding(
+      padding: EdgeInsets.only(
+        left: style.actionButtonHorizontalMargin,
+        right: style.actionButtonHorizontalMargin,
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            flex: 1,
+            child: ClearButton(strings: appStrings, onPressed: onClear),
+          ),
+          SizedBox(width: style.actionButtonRowSpacing),
+          Expanded(
+            flex: 2,
+            child: CalculateButton(strings: appStrings, onPressed: onCalculate),
+          ),
+        ],
+      ),
+    );
+  }
+
+  //Right Side
+  Widget _buildRightSide(AppStyle style, BuildContext context) {
+    return Expanded(
+      flex: 2,
+      child: Column(
+        children: [
+          Container(
+            width: double.infinity,
+            height:
+                MediaQuery.of(context).size.height *
+                style.timeCardHeightMultiplier,
+            decoration: _buildTimeCardDecoration(style),
+            child: SafeArea(
+              left: false,
+              bottom: false,
+              child: Column(
+                //mainAxisSize: MainAxisSize.min,
+                children: [
+                  _buildRightSideIconButtons(style),
+                  const Spacer(flex: 1),
+                  _buildTimeCardContents(style),
+                  const Spacer(flex: 3),
+                ],
+              ),
+            ),
+          ),
+          Expanded(child: _buildHistoryCard(style)),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildRightSideIconButtons(AppStyle style) {
+    return Padding(
+      padding: EdgeInsets.only(
+        top: style.iconButtonVerticalPadding,
+        left: style.iconButtonHorizontalPadding,
+        right: style.iconButtonHorizontalPadding,
+      ),
+      child: Row(
+          children: [
+            const Spacer(),
+            HistoryIconButton(
+              tooltip: appStrings.tooltipHistory,
+              onPressed: onHistory,
+            ),
+            Expanded(
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: ModeIconButton(
+                  tooltip: appStrings.tooltipSelectMode,
+                  onPressed: onMode,
+                ),
+              ),
+            ),
+          ],
+        ),
+    );
+  }
+
+  BoxDecoration _buildTimeCardDecoration(AppStyle style) {
+    return BoxDecoration(
+      gradient: LinearGradient(
+        colors: [
+          AppColours.secondaryBackgroundLight,
+          AppColours.secondaryBackgroundDark,
+        ],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+      ),
+    );
+  }
+
+  Widget _buildTimeCardContents(AppStyle style) {
+    return TimeCard(
+      estimatedTime: estimatedTime,
+      isCalculated: isCalculated,
+      isOver24Hrs: isOver24Hrs,
+      appStrings: appStrings,
+    );
+  }
+
+  Widget _buildHistoryCard(AppStyle style) {
+    return Container(
+      width: double.infinity,
+      color: AppColours.primaryBackground,
+      child: HistoryCard(appStrings: appStrings, isTablet: false),
     );
   }
 }

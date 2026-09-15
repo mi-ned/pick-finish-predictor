@@ -19,13 +19,13 @@ class HistoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final style = AppStyle.of(context);
 
-    return Container(
+    final borderRadius = isTablet ? BorderRadius.vertical(top: Radius.circular(style.historyCardBorderRadius),): BorderRadius.zero;
+
+    final content = Container(
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColours.historyCardPrimaryBackground,
-        borderRadius: isTablet
-          ? BorderRadius.vertical(top: Radius.circular(style.historyCardHandlePillBorderRadius),)
-          : BorderRadius.zero,
+        borderRadius: borderRadius,
       ),
       child: Column(
         children: [
@@ -74,8 +74,15 @@ class HistoryCard extends StatelessWidget {
               ],
             ),
           ),
-      ],)
+      ],
+      ),
     );
+
+    if(isTablet){
+      return ClipRRect(borderRadius: borderRadius, child: content,);
+    }
+
+    return content;
   }
 
   Widget _buildHistoryListView({
