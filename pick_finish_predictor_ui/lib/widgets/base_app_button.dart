@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:pick_finish_predictor_ui/views/layouts/app_style.dart';
-import 'button_state_resolver.dart';
 
 class BaseAppButton extends StatelessWidget {
   final String text;
@@ -16,6 +15,8 @@ class BaseAppButton extends StatelessWidget {
   final Color fgPressed;
   final Color fgDisabled;
 
+  final double defaultElevation;
+
   const BaseAppButton({
     super.key,
     required this.text,
@@ -27,34 +28,52 @@ class BaseAppButton extends StatelessWidget {
     required this.fgEnabled,
     required this.fgPressed,
     required this.fgDisabled,
+    this.defaultElevation = 2.0,
   });
 
   @override
   Widget build(BuildContext context) {
-    final style = AppStyle.of(context);
+
+    AppStyle style = AppStyle.of(context);
+
+    final bool active = isEnabled && onPressed != null;
 
     return ElevatedButton(
       onPressed: isEnabled ? onPressed : null,
-      style: ButtonStyle(
-        minimumSize: WidgetStateProperty.all(Size(style.actionButtonWidth, style.actionButtonHeight)),
-        padding: WidgetStateProperty.all(
-          EdgeInsets.symmetric(horizontal: style.actionButtonHorizontalContentPadding, vertical: style.actionButtonVerticalContentPadding),
-        ),
-        shape: WidgetStateProperty.all(
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(style.actionButtonBorderRadius)),
+      style: ElevatedButton.styleFrom(
+        minimumSize: Size.fromHeight(style.actionButtonHeight),
+        shadowColor: active ? null : Colors.transparent,
+      ).copyWith(
+        elevation: WidgetStateProperty.resolveWith((states){
+          if(states.contains(WidgetState.disabled)){
+            return 0.0;
+          }
+          if(states.contains(WidgetState.pressed)){
+            return defaultElevation / 2;
+          }
+          return defaultElevation;
+        }),
+        backgroundColor: WidgetStateProperty.resolveWith((states) {
+          if(states.contains(WidgetState.disabled)){
+            return bgDisabled;
+          }
+          if(states.contains(WidgetState.pressed)){
+            return bgPressed;
+          }
+          return bgEnabled;
+        }),
+        
+      foregroundColor: WidgetStateProperty.resolveWith((states) {
+        if(states.contains(WidgetState.disabled)){
+          return fgDisabled;
+        }
+        if(states.contains(WidgetState.pressed)){
+          return fgPressed;
+        }
+
+        return fgEnabled;
+      }),
       ),
-      elevation: WidgetStateProperty.all(style.actionButtonElevation),
-      backgroundColor: ButtonStateResolver.resolveBackground(
-        enabled: bgEnabled, 
-        pressed: bgPressed, 
-        disabled: bgDisabled,
-      ),
-      foregroundColor: ButtonStateResolver.resolveForeground(
-        enabled: fgEnabled,
-        pressed: fgPressed,
-        disabled: fgDisabled,
-      ),
-    ),
     child: Text(
       text,
       maxLines: 1,

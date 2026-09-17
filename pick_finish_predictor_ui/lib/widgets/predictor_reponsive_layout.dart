@@ -28,8 +28,8 @@ class PredictorResponsiveLayout extends StatelessWidget {
   final TextEditingController rateController;
 
   // Action Bar Callbacks
-  final VoidCallback onClear;
-  final VoidCallback onCalculate;
+  final VoidCallback? onClear;
+  final VoidCallback? onCalculate;
 
   const PredictorResponsiveLayout({
     super.key,

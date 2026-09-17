@@ -20,23 +20,3 @@ class CompletionResultModel {
     );
   }
 }
-
-class MetricsModel{
-  final int itemsRemaining;
-  final int averagePickrate;
-  final int currentNumberOfPickers;
-
-  MetricsModel({
-    required this.itemsRemaining,
-    required this.averagePickrate,
-    required this.currentNumberOfPickers,
-  });
-
-  Map<String, dynamic> toJson(){
-    return {
-      'itemsRemaining': itemsRemaining,
-      'averagePickrate': averagePickrate,
-      'currentNumberOfPickers': currentNumberOfPickers,
-    };
-  }
-}

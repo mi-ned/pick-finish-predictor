@@ -1,7 +1,8 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:pick_finish_predictor_ui/models/prediction_models.dart';
+import 'package:pick_finish_predictor_ui/models/completion_result_model.dart';
+import 'package:pick_finish_predictor_ui/models/metrics_model.dart';
 
 class ApiService {
   static const String baseUrl = 'http://localhost:8080/api/v1/predict';

@@ -17,10 +17,12 @@ class CalculateButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final effectiveOnPressed = isEnabled ? onPressed : null;
     return BaseAppButton(
       text: strings.calculateButton,
-      onPressed: onPressed,
-      isEnabled: isEnabled,
+      onPressed: effectiveOnPressed,
+      isEnabled: effectiveOnPressed != null,
       bgEnabled: AppColours.calculateButtonBackgroundEnabled,
       bgPressed: AppColours.calculateButtonBackgroundPressed,
       bgDisabled: AppColours.calculateButtonBackgroundDisabled,
@@ -45,10 +47,11 @@ class ClearButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final effectiveOnPressed = isEnabled ? onPressed : null;
     return BaseAppButton(
       text: strings.clearButton,
-      onPressed: onPressed,
-      isEnabled: isEnabled,
+      onPressed: effectiveOnPressed,
+      isEnabled: effectiveOnPressed != null,
       bgEnabled: AppColours.clearButtonBackgroundEnabled,
       bgPressed: AppColours.clearButtonBackgroundPressed,
       bgDisabled: AppColours.clearButtonBackgroundDisabled,

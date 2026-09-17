@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import com.mironedel.picker.engine.SimpleCalculator;
 import com.mironedel.picker.engine.TimeParser;
+import com.mironedel.picker.exception.InvalidCapacityException;
 import com.mironedel.picker.model.CompletionResult;
 import com.mironedel.picker.model.Metrics;
 import com.mironedel.picker.service.LanguageService;
@@ -34,12 +35,12 @@ public class UserInterface {
 		
 		Metrics metrics = new Metrics(itemsRemaining, numberOfPickers, averagePickrate);
 		
-		if(metrics.calculateTotalCapacity() == 0) {
-			System.out.println(i18n.getString("error.capacity_zero"));
-		} else {
-			CompletionResult result = calculator.calculateCompletionTime(currentTime, metrics);
-			displayResults(currentTime, metrics, result);
-		}
+			try {
+				CompletionResult result = calculator.calculateCompletionTime(currentTime, metrics);
+				displayResults(currentTime, metrics, result);
+			} catch(InvalidCapacityException e) {
+				System.out.println(i18n.getString(e.getMessage()));
+			}
 		
 		scanner.close();
 		System.out.println(i18n.getString("terminated"));

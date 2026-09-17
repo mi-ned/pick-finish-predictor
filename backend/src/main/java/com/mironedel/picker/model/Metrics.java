@@ -1,5 +1,7 @@
 package com.mironedel.picker.model;
 
+import com.mironedel.picker.exception.InvalidCapacityException;
+
 public class Metrics {
 	
 	private int itemsRemaining;
@@ -50,7 +52,7 @@ public class Metrics {
 		
 		int totalCapacity = calculateTotalCapacity();
 		if(totalCapacity == 0) {
-			return 0;
+			throw new InvalidCapacityException("error.capacity_zero");
 		}
 		
 		return (double) itemsRemaining / (double) totalCapacity;

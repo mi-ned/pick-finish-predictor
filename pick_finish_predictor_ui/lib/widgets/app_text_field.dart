@@ -62,6 +62,7 @@ class AppTextField extends StatelessWidget {
 
           return TextField(
             controller: controller,
+            readOnly: isCalculated,
             keyboardType: keyboardType,
             onChanged: onChanged,
             style: TextStyle(
@@ -88,7 +89,7 @@ class AppTextField extends StatelessWidget {
                 vertical: style.textFieldVerticalContentPadding,
               ),
               border: InputBorder.none,
-              suffixIcon: hasText ? _buildSuffixIcon(style: style) : null,
+              suffixIcon: (hasText && !isCalculated) ? _buildSuffixIcon(style: style) : null,
             ),
           );
         },

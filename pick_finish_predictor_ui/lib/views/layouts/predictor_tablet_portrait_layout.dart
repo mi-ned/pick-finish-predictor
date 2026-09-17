@@ -27,9 +27,15 @@ class PredictorTabletPortraitLayout extends StatelessWidget {
   final TextEditingController pickersController;
   final TextEditingController rateController;
 
+  //error messages
+  final String? timeError;
+  final String? itemsError;
+  final String? pickersError;
+  final String? rateError;
+
   //buttons
-  final VoidCallback onClear;
-  final VoidCallback onCalculate;
+  final VoidCallback? onClear;
+  final VoidCallback? onCalculate;
 
   const PredictorTabletPortraitLayout({
     super.key,
@@ -38,15 +44,19 @@ class PredictorTabletPortraitLayout extends StatelessWidget {
     required this.onHelp,
     required this.onHistory,
     required this.onMode,
-    required this.estimatedTime,
-    required this.isCalculated,
-    required this.isOver24Hrs,
     required this.timeController,
     required this.itemsController,
     required this.pickersController,
     required this.rateController,
+    this.timeError,
+    this.itemsError,
+    this.pickersError,
+    this.rateError,
     required this.onClear,
     required this.onCalculate,
+    required this.estimatedTime,
+    required this.isCalculated,
+    required this.isOver24Hrs,
   });
 
   @override
@@ -198,6 +208,8 @@ class PredictorTabletPortraitLayout extends StatelessWidget {
           AppTextField(
             controller: timeController,
             label: appStrings.promptCurrentTime,
+            errorText: timeError,
+            isCalculated: isCalculated,
           ),
 
           SizedBox(height: style.textFieldSpacing),
@@ -205,6 +217,8 @@ class PredictorTabletPortraitLayout extends StatelessWidget {
           AppTextField(
             controller: itemsController,
             label: appStrings.promptItemsRemaining,
+            errorText: itemsError,
+            isCalculated: isCalculated,
           ),
 
           SizedBox(height: style.textFieldSpacing),
@@ -212,6 +226,8 @@ class PredictorTabletPortraitLayout extends StatelessWidget {
           AppTextField(
             controller: pickersController,
             label: appStrings.promptNumberOfPickers,
+            errorText: pickersError,
+            isCalculated: isCalculated,
           ),
 
           SizedBox(height: style.textFieldSpacing),
@@ -219,7 +235,8 @@ class PredictorTabletPortraitLayout extends StatelessWidget {
           AppTextField(
             controller: rateController,
             label: appStrings.promptAveragePickRate,
-            //errorText: appStrings.errorMessageCapacityZero,
+            errorText: rateError,
+            isCalculated: isCalculated,
           ),
         ],
       ),

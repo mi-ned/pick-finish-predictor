@@ -24,9 +24,15 @@ class PredictorTabletLandscapeLayout extends StatelessWidget {
   final TextEditingController pickersController;
   final TextEditingController rateController;
 
+  //error messages
+  final String? timeError;
+  final String? itemsError;
+  final String? pickersError;
+  final String? rateError;
+
   // buttons
-  final VoidCallback onClear;
-  final VoidCallback onCalculate;
+  final VoidCallback? onClear;
+  final VoidCallback? onCalculate;
 
   // right side
   // card view
@@ -45,6 +51,10 @@ class PredictorTabletLandscapeLayout extends StatelessWidget {
     required this.itemsController,
     required this.pickersController,
     required this.rateController,
+    this.timeError,
+    this.itemsError,
+    this.pickersError,
+    this.rateError,
     required this.onClear,
     required this.onCalculate,
     required this.estimatedTime,
@@ -107,27 +117,39 @@ class PredictorTabletLandscapeLayout extends StatelessWidget {
         horizontal: style.textFieldHorizontalMargin,
       ),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         children: [
           AppTextField(
             controller: timeController,
             label: appStrings.promptCurrentTime,
+            errorText: timeError,
+            isCalculated: isCalculated,
           ),
+
           SizedBox(height: style.textFieldSpacing),
+
           AppTextField(
             controller: itemsController,
             label: appStrings.promptItemsRemaining,
+            errorText: itemsError,
+            isCalculated: isCalculated,
           ),
+
           SizedBox(height: style.textFieldSpacing),
+
           AppTextField(
             controller: pickersController,
             label: appStrings.promptNumberOfPickers,
+            errorText: pickersError,
+            isCalculated: isCalculated,
           ),
+
           SizedBox(height: style.textFieldSpacing),
+
           AppTextField(
             controller: rateController,
             label: appStrings.promptAveragePickRate,
-            //errorText: appStrings.errorMessageCapacityZero,
+            errorText: rateError,
+            isCalculated: isCalculated,
           ),
         ],
       ),
