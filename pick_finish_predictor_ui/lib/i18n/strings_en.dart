@@ -38,7 +38,7 @@ class StringsEn implements AppStrings{
   @override
   String get errorMessageInvalidTime => 'Invalid Time: Could not recognise the time format!';
   @override
-  String get errorMessagePositiveNumber => 'Invalid Input: Musst be greater than 0!';
+  String get errorMessagePositiveNumber => 'Invalid Input: Must be greater than 0!';
   @override
   String get headerEstimatedCompletionTime => 'Estimated Completion Time:';
   @override
@@ -89,18 +89,14 @@ class StringsEn implements AppStrings{
   String get warningMessageExploitativeWorkload => '⚠️ Workload exceeds standard shift capacity!';
 
   @override
-  // TODO: implement tooltipHelp
   String get tooltipHelp => 'Help';
 
   @override
-  // TODO: implement tooltipHistory
   String get tooltipHistory => 'History';
 
   @override
-  // TODO: implement tooltipMenu
   String get tooltipMenu => 'Main Menu';
 
   @override
-  // TODO: implement tooltipSelectMode
   String get tooltipSelectMode => 'Select Mode';
   }

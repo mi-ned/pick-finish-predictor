@@ -89,18 +89,14 @@ class StringsDe implements AppStrings {
   String get warningMessageExploitativeWorkload => '⚠️ Die Arbeitslast überschreitet die Standard-Schichtkapazität.';
 
   @override
-  // TODO: implement tooltipHelp
   String get tooltipHelp => 'Hilfe';
 
   @override
-  // TODO: implement tooltipHistory
   String get tooltipHistory => 'Verlauf';
 
   @override
-  // TODO: implement tooltipMenu
   String get tooltipMenu => 'Hauptmenü';
 
   @override
-  // TODO: implement tooltipSelectMode
   String get tooltipSelectMode => 'Modus auswählen';
 }

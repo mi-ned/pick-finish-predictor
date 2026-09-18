@@ -28,13 +28,11 @@ class PredictorViewModel extends ChangeNotifier {
   }
 
   void _onFieldInputChanged(){
-    //if(timeError != null || itemsError != null || pickersError != null || rateError != null){
       timeError = null;
       itemsError = null;
       pickersError = null;
       rateError = null;
       notifyListeners();
-    //}
   }
 
   bool get isClearButtonEnabled =>
