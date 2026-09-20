@@ -1,4 +1,11 @@
 abstract class AppStrings{
+
+  //Top Left
+  String get appName;
+  String get staticMode;
+  String get dynamicMode;
+  String get notebookMode;
+
   //Tooltip
   String get tooltipMenu;
   String get tooltipHelp;
@@ -45,20 +52,31 @@ abstract class AppStrings{
   String get deleteButton;
   //Help
   String get headerHelp;
-  //Help accordians
-  String get accordianCurrentTime;
-  String get accordianItemsRemaining;
-  String get accordianNumberOfPickers;
-  String get accordianAveragePickRate;
-  String get accordianFormulaBreakdown;
-  String get accordianClearFields;
-  String get accordianStaticMode;
-  String get accordianDynamicMode;
-  String get accordianNotebook;
-  String get accordianHistory;
-  String get accordianClearHistory;
+  //Help accordian headers
+  String get accordianHeaderCurrentTime;
+  String get accordianHeaderItemsRemaining;
+  String get accordianHeaderNumberOfPickers;
+  String get accordianHeaderAveragePickRate;
+  String get accordianHeaderFormulaBreakdown;
+  String get accordianHeaderClearFields;
+  String get accordianHeaderStaticMode;
+  String get accordianHeaderDynamicMode;
+  String get accordianHeaderNotebook;
+  String get accordianHeaderHistory;
+  String get accordianHeaderClearHistory;
   //Help contents
-            //String get contentsCurrentTime; etc...
+  String get accordianContentCurrentTime;
+  String get accordianContentItemsRemaining;
+  String get accordianContentNumberOfPickers;
+  String get accordianContentAveragePickRate;
+  String get accordianContentFormulaBreakdown;
+  String get accordianContentClearFields;
+  String get accordianContentStaticMode;
+  String get accordianContentDynamicMode;
+  String get accordianContentNotebook;
+  String get accordianContentHistory;
+  String get accordianContentClearHistory;
   //Help textfield
   String get textfieldSearch;
+  String get noTextFound;
 }

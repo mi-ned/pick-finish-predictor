@@ -4,6 +4,7 @@ import 'package:pick_finish_predictor_ui/theme/app_colours.dart';
 import 'package:pick_finish_predictor_ui/views/layouts/app_style.dart';
 import 'package:pick_finish_predictor_ui/widgets/app_action_button.dart';
 import 'package:pick_finish_predictor_ui/widgets/app_icon_button.dart';
+import 'package:pick_finish_predictor_ui/widgets/app_logo_title.dart';
 import 'package:pick_finish_predictor_ui/widgets/app_text_field.dart';
 import 'package:pick_finish_predictor_ui/widgets/time_card.dart';
 
@@ -11,7 +12,6 @@ class PredictorMobileLayout extends StatelessWidget {
   final AppStrings appStrings;
 
   //menu buttons
-  final VoidCallback onMenu;
   final VoidCallback onHelp;
   final VoidCallback onHistory;
   final VoidCallback onMode;
@@ -40,7 +40,6 @@ class PredictorMobileLayout extends StatelessWidget {
   const PredictorMobileLayout({
     super.key,
     required this.appStrings,
-    required this.onMenu,
     required this.onHelp,
     required this.onHistory,
     required this.onMode,
@@ -121,21 +120,23 @@ class PredictorMobileLayout extends StatelessWidget {
           Expanded(
             child: Align(
               alignment: Alignment.centerLeft,
-              child: MenuIconButton(
-                tooltip: appStrings.tooltipMenu,
-                onPressed: onMenu,
+              child: HeaderBranding(modeName: appStrings.staticMode, //to be updated
+              strings: appStrings,
+              style: style,
               ),
             ),
           ),
-
-          HelpIconButton(tooltip: appStrings.tooltipHelp, onPressed: onHelp),
-
           Expanded(
             child: Align(
               alignment: Alignment.centerRight,
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  HelpIconButton(
+                    tooltip: appStrings.tooltipHelp,
+                    onPressed: onHelp,
+                  ),
+                  SizedBox(width: style.iconButtonSpacing),
                   HistoryIconButton(
                     tooltip: appStrings.tooltipHistory,
                     onPressed: onHistory,

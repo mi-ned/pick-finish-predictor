@@ -3,7 +3,6 @@ import 'package:pick_finish_predictor_ui/i18n/app_strings.dart';
 import 'package:pick_finish_predictor_ui/theme/app_colours.dart';
 import 'package:pick_finish_predictor_ui/views/layouts/app_style.dart';
 import 'package:pick_finish_predictor_ui/widgets/app_action_button.dart';
-import 'package:pick_finish_predictor_ui/widgets/app_icon_button.dart';
 import 'package:pick_finish_predictor_ui/widgets/app_text_field.dart';
 import 'package:pick_finish_predictor_ui/widgets/time_card.dart';
 import 'package:pick_finish_predictor_ui/widgets/history_card.dart';
@@ -83,29 +82,11 @@ class PredictorDesktopLayout extends StatelessWidget {
       flex: 3,
       child: Column(
         children: [
-          _buildLeftSideIconButtons(style),
           const Spacer(),
           _buildTextFields(style),
           const Spacer(),
           _buildActionButtons(style),
           const Spacer(),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildLeftSideIconButtons(AppStyle style) {
-    return Padding(
-      padding: EdgeInsets.only(
-        top: style.iconButtonVerticalPadding,
-        left: style.iconButtonHorizontalPadding,
-        right: style.iconButtonHorizontalPadding,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          MenuIconButton(tooltip: appStrings.tooltipMenu, onPressed: onMenu),
-          HelpIconButton(tooltip: appStrings.tooltipHelp, onPressed: onHelp),
         ],
       ),
     );
@@ -198,7 +179,7 @@ class PredictorDesktopLayout extends StatelessWidget {
               child: Column(
                 //mainAxisSize: MainAxisSize.min,
                 children: [
-                  _buildRightSideIconButtons(style),
+                  //_buildRightSideIconButtons(style),
                   const Spacer(flex: 1),
                   _buildTimeCardContents(style),
                   const Spacer(flex: 3),
@@ -209,34 +190,6 @@ class PredictorDesktopLayout extends StatelessWidget {
           Expanded(child: _buildHistoryCard(style)),
         ],
       ),
-    );
-  }
-
-  Widget _buildRightSideIconButtons(AppStyle style) {
-    return Padding(
-      padding: EdgeInsets.only(
-        top: style.iconButtonVerticalPadding,
-        left: style.iconButtonHorizontalPadding,
-        right: style.iconButtonHorizontalPadding,
-      ),
-      child: Row(
-          children: [
-            const Spacer(),
-            HistoryIconButton(
-              tooltip: appStrings.tooltipHistory,
-              onPressed: onHistory,
-            ),
-            Expanded(
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: ModeIconButton(
-                  tooltip: appStrings.tooltipSelectMode,
-                  onPressed: onMode,
-                ),
-              ),
-            ),
-          ],
-        ),
     );
   }
 

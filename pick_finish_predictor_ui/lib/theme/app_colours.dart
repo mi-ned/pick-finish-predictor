@@ -1,12 +1,17 @@
 
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
+
 abstract class AppColours {
   //Main colours
   static const Color primaryBackground = Color(0xFF252525);
   static const Color secondaryBackgroundLight = Color(0xFF00897b);
   static const Color secondaryBackgroundDark = Color(0xFF263238);
 
+  //Top Left
+  static const Color appLogoTitleForeground = Color(0xFFFFFFFF);
+  static const Color modeIndicatorBadgeForeground = Color(0xFFE0E0E0);
   //TextField
   //Background
   static const Color textFieldBackgroundEnabled = Color(0xFF191919);
@@ -59,5 +64,36 @@ abstract class AppColours {
   //Foreground
   static const Color historyCardPrimaryForeground = Color(0xfff0f0f0);
   static const Color historyCardSecondaryForeground = Color(0xffa4a4a4);
+
+  //Help
+  //Background
+  static const Color helpExpansionTileOpenBackground = Color(0xff323232);
+
+  //Trailing Icon
+  static const Color helpExpansionTileTrailingIconBackgroundNormal = Color(0xffcc6600);
+  static const Color helpExpansionTileTrailingIconBackgroundCollapsed = Color(0xffa0f0e0);
+
+  //Divider
+  static const Color helpExpansionTileDividerBackground = Colors.white12;
+
+  //Searchbar
+  static const Color helpExpansionTileSearchBarBackground = Color.fromARGB(125, 25, 25, 25);
+  
+  //Highlighted
+  static const Color helpExpansionTileSearchBarHighlightedBackground = Color(0xffa0f0e0);
+
+  //Foreground
+  static const Color helpExpansiontilePrimaryForeground = Color(0xffffffff);
+  static const Color helpExpansionTileOpenForeground = Color(0xfff0f0f0);
+
+  //Searchbar
+  static const Color helpExpansionTileSearchBarForegroundMain = Color(0xffffffff);
+  static const Color helpExpansionTileSearchBarForegroundHint = Color(0xff888888);
+
+  //Highlighted
+  static const Color helpExpansionTileSearchBarHighlightedForeground = Color(0xff005e4e);
+
+  //Pill Handle
+  static const Color helpExpansionPillHandle = Color(0xff888888);
   
 }

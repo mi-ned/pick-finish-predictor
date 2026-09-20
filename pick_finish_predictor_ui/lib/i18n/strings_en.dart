@@ -2,27 +2,29 @@ import 'app_strings.dart';
 
 class StringsEn implements AppStrings{
   @override
-  String get accordianAveragePickRate => 'Average Pick Rate';
+  String get appName => 'PickPredict';
   @override
-  String get accordianClearFields => 'Clear Fields';
+  String get accordianHeaderAveragePickRate => 'Average Pick Rate';
   @override
-  String get accordianClearHistory => 'Clear History';
+  String get accordianHeaderClearFields => 'Clear Fields';
   @override
-  String get accordianCurrentTime => 'Current Time';
+  String get accordianHeaderClearHistory => 'Clear History';
   @override
-  String get accordianDynamicMode => 'Dynamic Mode';
+  String get accordianHeaderCurrentTime => 'Current Time';
   @override
-  String get accordianFormulaBreakdown => 'Formula Breakdown';
+  String get accordianHeaderDynamicMode => 'Dynamic Mode';
   @override
-  String get accordianHistory => 'History';
+  String get accordianHeaderFormulaBreakdown => 'Formula Breakdown';
   @override
-  String get accordianItemsRemaining => 'Items Remaining';
+  String get accordianHeaderHistory => 'History';
   @override
-  String get accordianNotebook => 'Notebook';
+  String get accordianHeaderItemsRemaining => 'Items Remaining';
   @override
-  String get accordianNumberOfPickers => 'Number of Pickers';
+  String get accordianHeaderNotebook => 'Notebook';
   @override
-  String get accordianStaticMode => 'Static Mode';
+  String get accordianHeaderNumberOfPickers => 'Number of Pickers';
+  @override
+  String get accordianHeaderStaticMode => 'Static Mode';
   @override
   String get calculateButton => 'CALCULATE';
   @override
@@ -99,4 +101,49 @@ class StringsEn implements AppStrings{
 
   @override
   String get tooltipSelectMode => 'Select Mode';
+
+  @override
+  String get dynamicMode => 'Dynamic Mode';
+
+  @override
+  String get notebookMode => 'Notebook';
+
+  @override
+  String get staticMode => 'Static Mode';
+
+  @override
+  String get accordianContentAveragePickRate => 'The expected target units picked per person, per hour (e.g., 65 units/hr).';
+
+  @override
+  String get accordianContentClearFields => 'Resets all input fields and clears the current completion time estimate so you can start a fresh prediction.';
+
+  @override
+  String get accordianContentClearHistory => 'Permanently deletes all saved calculation records from local storage.';
+
+  @override
+    String get accordianContentCurrentTime => 'The start time for your prediction run (HH:mm). Enter your actual current shift time or the scheduled batch start time.';
+
+  @override
+  String get accordianContentDynamicMode => 'Recalculates completion estimates on the fly as live picking rates and headcount fluctuate during the shift.';
+
+  @override
+  String get accordianContentFormulaBreakdown => 'Total Hours = Items Remaining ÷ (Pickers × Pick Rate)\n\nEstimated Finish = Current Time + Total Hours required.';
+
+  @override
+  String get accordianContentHistory => 'Stores a log of your previous calculation runs so you can compare shift progression over time.';
+
+  @override
+  String get accordianContentItemsRemaining => 'The total unit or line count left to pick in the queue for the current wave or shift.';
+
+  @override
+  String get accordianContentNotebook => 'A dedicated workspace to log shift notes, track picker break schedules, and flag operational delays.';
+
+  @override
+  String get accordianContentNumberOfPickers => 'The total number of active staff currently assigned to picking tasks on the floor.';
+
+  @override
+  String get accordianContentStaticMode => 'Provides a point-in-time calculation assuming a constant pick rate and fixed headcount throughout the run.';
+
+  @override
+  String get noTextFound => 'No matching topics found';
   }
