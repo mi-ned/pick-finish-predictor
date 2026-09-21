@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:pick_finish_predictor_ui/i18n/app_strings.dart';
 import 'package:pick_finish_predictor_ui/theme/app_colours.dart';
 import 'package:pick_finish_predictor_ui/views/layouts/app_style.dart';
+import 'package:pick_finish_predictor_ui/views/layouts/help_content_view.dart';
 import 'package:pick_finish_predictor_ui/widgets/app_action_button.dart';
 import 'package:pick_finish_predictor_ui/widgets/app_icon_button.dart';
 import 'package:pick_finish_predictor_ui/widgets/app_logo_title.dart';
 import 'package:pick_finish_predictor_ui/widgets/app_text_field.dart';
+import 'package:pick_finish_predictor_ui/widgets/sliding_overlay_panel.dart';
 import 'package:pick_finish_predictor_ui/widgets/time_card.dart';
 import 'package:pick_finish_predictor_ui/widgets/history_card.dart';
 
@@ -40,6 +42,10 @@ class PredictorTabletLandscapeLayout extends StatelessWidget {
   final bool isCalculated;
   final bool isOver24Hrs;
 
+  //help
+  final bool isHelpVisible;
+  final VoidCallback onCloseHelp;
+
   const PredictorTabletLandscapeLayout({
     super.key,
     required this.appStrings,
@@ -59,6 +65,8 @@ class PredictorTabletLandscapeLayout extends StatelessWidget {
     required this.estimatedTime,
     required this.isCalculated,
     required this.isOver24Hrs,
+    required this.isHelpVisible,
+    required this.onCloseHelp,
   });
 
   @override
@@ -181,11 +189,110 @@ class PredictorTabletLandscapeLayout extends StatelessWidget {
 
   //Right Side
   Widget _buildRightSide(AppStyle style, BuildContext context) {
+
+    final Widget baseContent = _buildDefaultRightPanel(style, context);
+
+  /*if (!isHelpVisible) {
     return Expanded(
       flex: 2,
-      child: Container(
-        color: AppColours.secondaryBackgroundDark,
-        child: Column(
+      child: baseContent,
+    );
+  }*/
+
+  return Expanded(
+    flex: 2,
+    child: Stack(
+      children: [
+        // 1. Base content underneath
+        Positioned.fill(child: baseContent),
+
+          SlidingOverlayPanel(
+            isVisible: isHelpVisible, 
+            onClose: onCloseHelp, 
+            heightFactor: 0.85,
+            child: ClipRRect(
+              borderRadius: BorderRadius.vertical(
+                bottom: Radius.circular(
+                  style.helpContentSheetVerticalBorderRadius,
+                ),
+              ),
+              child: HelpContentView(
+                strings: appStrings, 
+                style: style, 
+                onClose: onCloseHelp, 
+                showDragHandle: true,
+                ),
+            )
+            
+            )
+      ],
+    ),
+  );
+
+
+  /*return Expanded(
+    flex: 2,
+    child: Stack(
+      children: [
+        Positioned.fill(child: baseContent),
+        Positioned.fill(
+          child: AnimatedOpacity(
+            opacity: isHelpVisible ? 1.0 : 0.0,
+            duration: const Duration(milliseconds: 250),
+            curve: Curves.easeInOut,
+            child: IgnorePointer(
+              ignoring: !isHelpVisible,
+          child: Container(
+            color: Colors.black.withOpacity(0.45),
+          )
+        ),
+        ),
+        ),
+
+        Align(
+          alignment: Alignment.topCenter,
+          child: AnimatedSlide(
+            offset: isHelpVisible ? Offset.zero : const Offset(0, -1),
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeOutCubic,
+            child: SizedBox(
+            height: MediaQuery.of(context).size.height * 0.85,
+            width: double.infinity,
+            child: Dismissible(
+                key: const Key('tablet_landscape_help_sheet_key'),
+                direction: DismissDirection.up,
+                onDismissed: (_) => onCloseHelp(),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.vertical(
+                      bottom: Radius.circular(
+                        style.helpContentSheetVerticalBorderRadius,
+                      ),
+                    ),
+                    child: HelpContentView(
+                      strings: appStrings,
+                      style: style,
+                      onClose: onCloseHelp,
+                      showDragHandle: true,
+                  ),
+                ),
+            ),
+          ),
+          ),
+        ),
+      ],
+    ),
+  );*/
+  }
+
+  Widget _buildDefaultRightPanel(AppStyle style, BuildContext context){
+
+    return Container(
+      color: AppColours.secondaryBackgroundDark,
+      
+
+
+    child: Column(
+      key: const ValueKey('default_panel'),
         children: [
           Container(
             width: double.infinity,
@@ -197,7 +304,6 @@ class PredictorTabletLandscapeLayout extends StatelessWidget {
               left: false,
               bottom: false,
               child: Column(
-                //mainAxisSize: MainAxisSize.min,
                 children: [
                   _buildRightSideIconButtons(style),
                   const Spacer(flex: 1),
@@ -209,9 +315,8 @@ class PredictorTabletLandscapeLayout extends StatelessWidget {
           ),
           Expanded(child: _buildHistoryCard(style)),
         ],
-      ),
-      ),
-    );
+    )
+      );
   }
 
   Widget _buildRightSideIconButtons(AppStyle style) {

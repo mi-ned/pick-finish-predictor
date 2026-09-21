@@ -2889,7 +2889,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="zceLO9uV2Qb2gUnRahzZ" name="iPad">
-    <mxGraphModel dx="802" dy="584" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1089" dy="1001" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -3088,8 +3088,26 @@
         <mxCell id="ZBppWaUv9vvkNWxt1gy_-32" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=none;align=left;fontFamily=Verdana;fontSize=8;fontColor=light-dark(#A4A4A4,#F0F0F0);" value="Static Mode" vertex="1">
           <mxGeometry height="8" width="118" x="460" y="796" as="geometry" />
         </mxCell>
-        <mxCell id="ZBppWaUv9vvkNWxt1gy_-34" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=none;fillColor=light-dark(#00897B,#00897B);gradientColor=none;gradientDirection=south;arcSize=0;" value="" vertex="1">
+        <mxCell id="ZBppWaUv9vvkNWxt1gy_-34" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=none;fillColor=light-dark(#00897B,#00897B);gradientColor=#008275;gradientDirection=south;arcSize=0;" value="" vertex="1">
           <mxGeometry height="40" width="260" x="830" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="1jDpngSK8ALK1w0Ue-LR-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica Neue;fontSize=24;fillColor=none;strokeColor=none;fontColor=#FFFFFF;" value="Help" vertex="1">
+          <mxGeometry height="40" width="205" x="860" y="773.5" as="geometry" />
+        </mxCell>
+        <mxCell id="1jDpngSK8ALK1w0Ue-LR-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#888888;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="5" width="30" x="945" y="1200" as="geometry" />
+        </mxCell>
+        <mxCell id="1jDpngSK8ALK1w0Ue-LR-3" parent="1" style="ellipse;whiteSpace=wrap;aspect=fixed;fontFamily=Verdana;fontSize=24;strokeColor=none;fillColor=none;fontColor=light-dark(#F0F0F0,#F0F0F0);" value="×" vertex="1">
+          <mxGeometry height="30" width="30" x="1040" y="778.5" as="geometry" />
+        </mxCell>
+        <mxCell id="1jDpngSK8ALK1w0Ue-LR-26" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#191919;strokeColor=none;fontFamily=Verdana;align=left;fontColor=#888888;" value="&amp;nbsp; &amp;nbsp;" vertex="1">
+          <mxGeometry height="40" width="220" x="852.5" y="1150" as="geometry" />
+        </mxCell>
+        <mxCell id="1jDpngSK8ALK1w0Ue-LR-27" parent="1" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=none;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.veeam2.magnifying_glass;fontColor=#888888;accentColor=#888888;fontSize=11;" value="" vertex="1">
+          <mxGeometry height="15" width="15" x="860" y="1162.5" as="geometry" />
+        </mxCell>
+        <mxCell id="1jDpngSK8ALK1w0Ue-LR-28" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Verdana;fontSize=11;fillColor=none;strokeColor=none;fontColor=light-dark(#A4A4A4,#F0F0F0);align=left;" value="Search" vertex="1">
+          <mxGeometry height="35" width="155" x="881.75" y="1152.5" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

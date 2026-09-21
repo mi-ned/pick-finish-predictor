@@ -366,7 +366,7 @@ class AppStyle {
     DisplayMode.iPhone => 45.0,
     DisplayMode.iPadPortrait => 60.0,
     DisplayMode.macOS => 0.0,
-    DisplayMode.iPadLandscape => 0.0,
+    DisplayMode.iPadLandscape => 60.0,
   };
 
   double get helpContentSheetHorizontalMargin => switch (mode) {

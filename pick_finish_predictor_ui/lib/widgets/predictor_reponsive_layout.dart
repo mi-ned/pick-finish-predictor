@@ -16,6 +16,10 @@ class PredictorResponsiveLayout extends StatelessWidget {
   final VoidCallback onHistory;
   final VoidCallback onMode;
 
+  //Help
+  final bool isHelpVisible;
+  final VoidCallback? onCloseHelp;
+
   // Output Card State
   final String estimatedTime;
   final bool isCalculated;
@@ -47,6 +51,8 @@ class PredictorResponsiveLayout extends StatelessWidget {
     required this.rateController,
     required this.onClear,
     required this.onCalculate,
+    this.isHelpVisible = false,
+    this.onCloseHelp,
   });
 
   @override
@@ -60,7 +66,7 @@ class PredictorResponsiveLayout extends StatelessWidget {
       case DisplayMode.iPadPortrait:
         return PredictorTabletPortraitLayout(appStrings: appStrings, onHelp: onHelp, onHistory: onHistory, onMode: onMode, estimatedTime: estimatedTime, isCalculated: isCalculated, isOver24Hrs: isOver24Hrs, timeController: timeController, itemsController: itemsController, pickersController: pickersController, rateController: rateController, onClear: onClear, onCalculate: onCalculate);
       case DisplayMode.iPadLandscape:
-        return PredictorTabletLandscapeLayout(appStrings: appStrings, onHelp: onHelp, onHistory: onHistory, onMode: onMode, timeController: timeController, itemsController: itemsController, pickersController: pickersController, rateController: rateController, onClear: onClear, onCalculate: onCalculate, estimatedTime: estimatedTime, isCalculated: isCalculated, isOver24Hrs: isOver24Hrs);
+        return PredictorTabletLandscapeLayout(appStrings: appStrings, onHelp: onHelp, onHistory: onHistory, onMode: onMode, timeController: timeController, itemsController: itemsController, pickersController: pickersController, rateController: rateController, onClear: onClear, onCalculate: onCalculate, estimatedTime: estimatedTime, isCalculated: isCalculated, isOver24Hrs: isOver24Hrs, isHelpVisible: isHelpVisible, onCloseHelp: onCloseHelp ?? () {},);
       case DisplayMode.macOS:
         return PredictorDesktopLayout(appStrings: appStrings, onMenu: onMenu, onHelp: onHelp, onHistory: onHistory, onMode: onMode, timeController: timeController, itemsController: itemsController, pickersController: pickersController, rateController: rateController, onClear: onClear, onCalculate: onCalculate, estimatedTime: estimatedTime, isCalculated: isCalculated, isOver24Hrs: isOver24Hrs);
     }

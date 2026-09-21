@@ -19,6 +19,7 @@ class PredictorView extends StatefulWidget{
 
 class _PredictorViewState extends State<PredictorView>{
   late final PredictorViewModel _viewModel;
+  bool _isHelpVisible = false;
 
   @override
   void initState(){
@@ -97,7 +98,15 @@ class _PredictorViewState extends State<PredictorView>{
     final mode = AppBreakpoints.getMode(context);
 
     //Callbacks top buttons
-    void handleHelpTapped() => _showTopHelpSheet(context, strings);
+    void handleHelpTapped() {
+      if(mode == DisplayMode.iPadLandscape){
+        setState(() {
+          _isHelpVisible = !_isHelpVisible;
+        });
+      } else {
+        _showTopHelpSheet(context, strings);
+      }
+    }
 
     // Callbacks map directly to ViewModel methods
     final clearCallback = _viewModel.isClearButtonEnabled ? _viewModel.clear : null;
@@ -144,7 +153,9 @@ class _PredictorViewState extends State<PredictorView>{
           onCalculate: calculateCallback,
           estimatedTime: _viewModel.estimatedTime,
           isCalculated: _viewModel.isCalculated,
-          isOver24Hrs: _viewModel.isOver24Hrs,
+          isOver24Hrs: _viewModel.isOver24Hrs, 
+          isHelpVisible: _isHelpVisible, 
+          onCloseHelp: () => setState(() => _isHelpVisible = false),
         );
 
       case DisplayMode.iPadPortrait:
